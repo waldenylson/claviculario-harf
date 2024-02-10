@@ -33,6 +33,19 @@ class LoginRequest extends FormRequest
     }
 
     /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'username.required' => 'Usuário Obrigatório!',
+            'password.required' => 'Senha Obrigatório',
+        ];
+    }
+
+    /**
      * Attempt to authenticate the request's credentials.
      *
      * @throws \Illuminate\Validation\ValidationException
@@ -41,7 +54,9 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt($this->only('username', 'password'), $this->boolean('remember'))) {
+
+        if (! Auth::attempt(['name' => $this->string('username') , 'password' => $this->string('password')], $this->boolean('remember')))
+        {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([

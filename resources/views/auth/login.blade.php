@@ -7,10 +7,10 @@
 
         <!-- Usename -->
         <div>
-            <x-input-label for="usename" :value="__('Usuário')" />
-            <x-text-input id="usename" class="block mt-1 w-full" type="text" name="usename" :value="old('usename')" required
+            <x-input-label for="username" :value="__('Usuário')" />
+            <x-text-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')" required
                 autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('usename')" class="mt-2" />
+            <x-input-error :messages="$errors->get('username')" class="mt-2" />
         </div>
 
         <!-- Password -->
