@@ -1,1 +1,1 @@
-<img src="/harf.png" />
+<img src="/harf.png" height="70px" width="60px" />
