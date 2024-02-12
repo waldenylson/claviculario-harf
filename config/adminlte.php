@@ -68,7 +68,7 @@ return [
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'Admin Logo',
+    'logo_img_alt' => 'HARF',
 
     /*
     |--------------------------------------------------------------------------
@@ -113,7 +113,7 @@ return [
             'alt' => 'HARF - Claviculário',
             'effect' => 'animation__shake',
             'width' => 100,
-            'height' => 90,
+            'height' => 130,
         ],
     ],
 
@@ -290,33 +290,29 @@ return [
     */
 
     'menu' => [
-        // Navbar items:
-        // [
-        //     'type'         => 'navbar-search',
-        //     'text'         => 'search',
-        //     'topnav_right' => true,
-        // ],
-        // [
-        //     'type'         => 'fullscreen-widget',
-        //     'topnav_right' => true,
-        // ],
 
-        // Sidebar items:
-        // [
-        //     'type' => 'sidebar-menu-search',
-        //     'text' => 'search',
-        // ],
         [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
-        ],
-        [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
+            'text' => 'CLAVICULÁRIO',
+            'url'  => '#',
+            'icon' => 'fa fa-solid fa-key',
+            'active'  => ['dashboard'],
+            'submenu' => [
+                [
+                    'text' => 'Total Chaves',
+                    'url'  => '',
+                    'icon' => '',
+                    'label'       => '150',
+                    'label_color' => 'primary',
+
+                ],
+                [
+                    'text' => 'Chaves Retiradas',
+                    'url'  => '',
+                    'icon' => '',
+                    'label'       => '50',
+                    'label_color' => 'danger',
+                ],
+            ],
         ],
         ['header' => 'account_settings'],
         [

@@ -1,4 +1,5 @@
 @extends('adminlte::page')
+@vite('resources/js/app.js')
 
 @section('title', 'Dashboard')
 
