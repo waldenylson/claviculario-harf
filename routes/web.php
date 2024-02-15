@@ -18,6 +18,10 @@ Route::get('/', function () {
     return redirect('/dashboard');
 });
 
+Route::get('/teste', function () {
+    return 290;
+});
+
 Route::get('/home', function () {
     return redirect('/dashboard');
 });

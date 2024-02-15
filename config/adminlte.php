@@ -1,5 +1,6 @@
 <?php
 
+
 return [
 
     /*
@@ -290,26 +291,30 @@ return [
     */
 
     'menu' => [
-
         [
             'text' => 'CLAVICULÁRIO',
+            'id' => 'claviculario',
+            'key' => 'claviculario',
             'url'  => '#',
             'icon' => 'fa fa-solid fa-key',
             'active'  => ['dashboard'],
             'submenu' => [
                 [
                     'text' => 'Total Chaves',
-                    'url'  => '',
-                    'icon' => '',
+                    'id' => 'total_chaves',
+                    'url'  => '#',
+                    'icon' => null,
+                    'icon_color' => 'cyan',
                     'label'       => '150',
                     'label_color' => 'primary',
-
+                    'update_class_name' => 'total-chaves',
                 ],
                 [
                     'text' => 'Chaves Retiradas',
-                    'url'  => '',
-                    'icon' => '',
-                    'label'       => '50',
+                    'url'  => '#',
+                    'icon' => null,
+                    'icon_color' => 'red',
+                    'label'       => 50,
                     'label_color' => 'danger',
                 ],
             ],

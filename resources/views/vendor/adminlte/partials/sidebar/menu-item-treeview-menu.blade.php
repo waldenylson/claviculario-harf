@@ -11,10 +11,10 @@
         <p>
             {{ $item['text'] }}
             <i class="fas fa-angle-left right"></i>
-
             @isset($item['label'])
-                <span class="badge badge-{{ $item['label_color'] ?? 'primary' }} right">
-                    {{-- {{ $item['label'] }} --}}
+            @dd($item)
+                <span class="badge badge-{{ $item['label_color'] ?? 'primary' }} {{ $item['update_class_name'] ?? '' }} right">
+                    {{ $item['label'] }}
                 </span>
             @endisset
         </p>
