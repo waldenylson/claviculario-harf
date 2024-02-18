@@ -290,6 +290,12 @@ return [
     |
     */
 
+
+
+    /**
+     * Part of the menu is being generated in the AppServiceProvider.php file
+     * due to the need to load dynamic data from database.
+     */
     'menu' => [
         ['header' => 'CLAVICULÁRIO', 'key' => 'claviculario', 'classes' => 'fa fa-key'],
         ['header' => 'CONTAS DE USUÁRIO', 'key' => 'users_acounts', 'classes' => 'fa fa-users'],
@@ -300,17 +306,6 @@ return [
             'icon_color' => 'info',
             'label_color' => 'info'
         ]
-        // [
-        //     'text' => 'profile',
-        //     'key' => 'teste',
-        //     'url'  => 'admin/settings',
-        //     'icon' => 'fas fa-fw fa-user',
-        // ],
-        // [
-        //     'text' => 'change_password',
-        //     'url'  => 'admin/settings',
-        //     'icon' => 'fas fa-fw fa-lock',
-        // ],
     ],
 
     /*
