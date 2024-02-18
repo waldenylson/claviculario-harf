@@ -291,99 +291,26 @@ return [
     */
 
     'menu' => [
+        ['header' => 'CLAVICULÁRIO', 'key' => 'claviculario', 'classes' => 'fa fa-key'],
+        ['header' => 'CONTAS DE USUÁRIO', 'key' => 'users_acounts', 'classes' => 'fa fa-users'],
         [
-            'text' => 'CLAVICULÁRIO',
-            'id' => 'claviculario',
-            'key' => 'claviculario',
+            'text' => 'Listar Todas',
             'url'  => '#',
-            'icon' => 'fa fa-solid fa-key',
-            'active'  => ['dashboard'],
-            'submenu' => [
-                [
-                    'text' => 'Total Chaves',
-                    'id' => 'total_chaves',
-                    'url'  => '#',
-                    'icon' => null,
-                    'icon_color' => 'cyan',
-                    'label'       => '150',
-                    'label_color' => 'primary',
-                    'update_class_name' => 'total-chaves',
-                ],
-                [
-                    'text' => 'Chaves Retiradas',
-                    'url'  => '#',
-                    'icon' => null,
-                    'icon_color' => 'red',
-                    'label'       => 50,
-                    'label_color' => 'danger',
-                ],
-            ],
-        ],
-        ['header' => 'account_settings'],
-        [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-            ],
-        ],
-        ['header' => 'labels'],
-        [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
-        ],
+            'icon' => 'fas fa-fw fa-rectangle-list',
+            'icon_color' => 'info',
+            'label_color' => 'info'
+        ]
+        // [
+        //     'text' => 'profile',
+        //     'key' => 'teste',
+        //     'url'  => 'admin/settings',
+        //     'icon' => 'fas fa-fw fa-user',
+        // ],
+        // [
+        //     'text' => 'change_password',
+        //     'url'  => 'admin/settings',
+        //     'icon' => 'fas fa-fw fa-lock',
+        // ],
     ],
 
     /*

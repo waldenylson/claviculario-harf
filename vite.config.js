@@ -6,13 +6,14 @@ export default defineConfig({
         laravel({
             input: [
                 'resources/css/app.css',
+                'resources/css/custom.css',
                 'resources/js/app.js',
             ],
             refresh: [
                 'resources/routes/**',
                 'routes/**',
                 'resources/views/**',
-                'config/adminlte.php'
+                'config/adminlte.php',
             ]
         }),
     ],

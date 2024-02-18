@@ -4,8 +4,20 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
+use Illuminate\Contracts\Events\Dispatcher;
+use Illuminate\Support\Facades\DB;
+use JeroenNoten\LaravelAdminLte\Events\BuildingMenu;
+
 class AppServiceProvider extends ServiceProvider
 {
+    private $keysCount;
+    private $outKeysCount;
+
+    public function __construct() {
+        $this->keysCount = DB::table('keys')->count();
+        $this->outKeysCount = DB::table('key_movements')->count();
+    }
+
     /**
      * Register any application services.
      */
@@ -17,8 +29,30 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-    public function boot(): void
+    public function boot(Dispatcher $events): void
     {
-        //
+
+
+        $events->listen(BuildingMenu::class, function (BuildingMenu $event) {
+            $event->menu->addAfter('claviculario', [
+                'text' => 'Chaves Retiradas',
+                'url'  => '#',
+                'icon' => 'fa-solid fa-fw fa-list-check',
+                'icon_color' => 'red',
+                'label'       => $this->outKeysCount,
+                'label_color' => 'danger'
+            ]);
+
+            $event->menu->addAfter('claviculario', [
+                'text' => 'Total Chaves',
+                'id' => 'total_chaves',
+                'url'  => '#',
+                'icon' => 'fa fa-fw fa-list',
+                'icon_color' => '',
+                'label'       => $this->keysCount,
+                'label_color' => 'primary',
+                'update_class_name' => 'total-chaves'
+            ]);
+        });
     }
 }

@@ -1,5 +1,6 @@
 @extends('adminlte::page')
-@vite('resources/js/app.js')
+@vite(['resources/css/app.css', 'resources/js/app.js'])
+
 
 @section('title', 'Dashboard')
 
@@ -8,11 +9,11 @@
 @stop
 
 @section('content')
-    <p>Welcome to this beautiful admin panel.</p>
+    <p>Welcome to this beautiful admin panel...</p>
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
+    @vite('resources/css/custom.css')
 @stop
 
 @section('js')
