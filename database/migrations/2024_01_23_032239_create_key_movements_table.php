@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('movement_type')->nullable(false);
             $table->dateTime('out')->nullable(false);
             $table->dateTime('return')->nullable();
-            $table->text('comments');
+            $table->text('comments')->nullable();
             $table->timestamps();
         });
     }
