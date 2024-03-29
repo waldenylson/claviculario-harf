@@ -14,8 +14,13 @@ class AppServiceProvider extends ServiceProvider
     private $outKeysCount;
 
     public function __construct() {
-        $this->keysCount = DB::table('keys')->count();
-        $this->outKeysCount = DB::table('key_movements')->count();
+        try {
+            $this->keysCount = DB::table('keys')->count();
+            $this->outKeysCount = DB::table('key_movements')->count();
+        } catch (\Throwable $th) {
+            $this->keysCount = 0;
+            $this->outKeysCount = 0;
+        }
     }
 
     /**
