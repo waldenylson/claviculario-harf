@@ -42,7 +42,7 @@ class AppServiceProvider extends ServiceProvider
             $event->menu->addAfter('claviculario', [
                 'text' => 'Chaves Retiradas',
                 'url'  => '#',
-                'icon' => 'fa-solid fa-fw fa-list-check',
+                'icon' => 'fa-solid fa-list-check',
                 'icon_color' => 'red',
                 'label'       => $this->outKeysCount,
                 'label_color' => 'danger'
@@ -52,7 +52,7 @@ class AppServiceProvider extends ServiceProvider
                 'text' => 'Total Chaves',
                 'id' => 'total_chaves',
                 'url'  => '#',
-                'icon' => 'fa fa-fw fa-list',
+                'icon' => 'fa-solid fa-list',
                 'icon_color' => '',
                 'label'       => $this->keysCount,
                 'label_color' => 'primary',
