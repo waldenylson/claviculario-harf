@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ac24b4f1e326958419e80d2bdcbcbbd5",
+    "content-hash": "c0776eaef11422cdcfe5a2d9c113c961",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -1090,16 +1090,16 @@
         },
         {
             "name": "jeroennoten/laravel-adminlte",
-            "version": "v3.9.4",
+            "version": "v3.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jeroennoten/Laravel-AdminLTE.git",
-                "reference": "479197945506d691d9b73c56dc365d3f5e7a9a9b"
+                "reference": "4c031a6f45d182847010fc841deaa298602460c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jeroennoten/Laravel-AdminLTE/zipball/479197945506d691d9b73c56dc365d3f5e7a9a9b",
-                "reference": "479197945506d691d9b73c56dc365d3f5e7a9a9b",
+                "url": "https://api.github.com/repos/jeroennoten/Laravel-AdminLTE/zipball/4c031a6f45d182847010fc841deaa298602460c9",
+                "reference": "4c031a6f45d182847010fc841deaa298602460c9",
                 "shasum": ""
             },
             "require": {
@@ -1109,8 +1109,7 @@
             },
             "require-dev": {
                 "orchestra/testbench": ">=4.0",
-                "phpunit/phpunit": ">=9.1",
-                "scrutinizer/ocular": "^1.9"
+                "phpunit/phpunit": ">=9.1"
             },
             "type": "library",
             "extra": {
@@ -1144,9 +1143,9 @@
             ],
             "support": {
                 "issues": "https://github.com/jeroennoten/Laravel-AdminLTE/issues",
-                "source": "https://github.com/jeroennoten/Laravel-AdminLTE/tree/v3.9.4"
+                "source": "https://github.com/jeroennoten/Laravel-AdminLTE/tree/v3.11.0"
             },
-            "time": "2024-01-19T14:51:27+00:00"
+            "time": "2024-03-18T14:42:51+00:00"
         },
         {
             "name": "laravel/framework",
