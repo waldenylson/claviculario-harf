@@ -1115,6 +1115,7 @@
             "require-dev": {
                 "orchestra/testbench": ">=4.0",
                 "phpunit/phpunit": ">=9.1"
+                "phpunit/phpunit": ">=9.1"
             },
             "type": "library",
             "extra": {
