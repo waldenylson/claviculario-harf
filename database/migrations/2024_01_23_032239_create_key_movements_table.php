@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('key_movements', function (Blueprint $table) {
             $table->id();
             $table->foreignId('key_id')->constrained();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('harf_staff_id')->constrained();
             $table->string('movement_type')->nullable(false);
             $table->dateTime('out')->nullable(false);
             $table->dateTime('return')->nullable();

@@ -20,7 +20,6 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
             'phone' => '(00)9999909999',
             'password' => Hash::make('123456'),
-            'electronic_signature' => Hash::make('123456'),
         ]);
     }
 }
