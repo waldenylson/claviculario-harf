@@ -305,6 +305,13 @@ return [
             'icon' => 'fas fa-fw fa-rectangle-list',
             'icon_color' => 'info',
             'label_color' => 'info'
+        ],
+        [
+            'text' => 'Novo Usuário',
+            'url'  => '/users/new',
+            'icon' => 'fas fa-fw fa-user-plus',
+            'icon_color' => '',
+            'label_color' => 'success'
         ]
     ],
 
