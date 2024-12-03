@@ -31,9 +31,8 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/users/new', [UserController::class, 'index'])->name('user.new');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/usuarios/novo', [UserController::class, 'index'])->name('users.new');
+
 });
 
 require __DIR__.'/auth.php';

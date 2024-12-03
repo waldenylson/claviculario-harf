@@ -308,7 +308,7 @@ return [
         ],
         [
             'text' => 'Novo Usuário',
-            'url'  => '/users/new',
+            'url'  => 'usuarios/novo',
             'icon' => 'fas fa-fw fa-user-plus',
             'icon_color' => '',
             'label_color' => 'success'
