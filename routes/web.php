@@ -32,7 +32,6 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/usuarios/novo', [UserController::class, 'index'])->name('users.new');
-
 });
 
 require __DIR__.'/auth.php';
