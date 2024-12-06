@@ -13,7 +13,7 @@
 @section('body_data', $layoutHelper->makeBodyData())
 
 @section('body')
-    <div class="wrapper">
+    <div class="wrapper" x-data>
 
         {{-- Preloader Animation (fullscreen mode) --}}
         @if($preloaderHelper->isPreloaderEnabled())

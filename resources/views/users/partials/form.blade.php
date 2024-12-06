@@ -31,7 +31,7 @@
         <div class="row">
           <div class="col-md-2">
             <label for="phone" class="form-label label">Tel. Contato</label>
-            <input type="text" class="form-control" id="phone" x-data x-mask="(99) 99999-9999"
+            <input type="text" class="form-control" id="phone" x-mask="(99) 99999-9999"
               placeholder="(99) 99999-9999" required />
           </div>
           <div class="col-md-2">
