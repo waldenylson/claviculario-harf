@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('key_id')->constrained();
             $table->foreignId('harf_staff_id')->constrained();
+            $table->foreignId('user_id')->constrained();
             $table->string('movement_type')->nullable(false);
             $table->dateTime('out')->nullable(false);
             $table->dateTime('return')->nullable();

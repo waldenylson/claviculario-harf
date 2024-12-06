@@ -27,6 +27,7 @@ export default defineConfig({
                 __dirname,
                 "node_modules/bootstrap/dist",
             ),
+            "@nm": path.resolve(__dirname, "node_modules/"),
         },
     },
 });

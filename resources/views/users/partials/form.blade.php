@@ -19,33 +19,67 @@
       <div class="container py-12">
         {{ html()->form('GET', '/usuarios/novo')->class('g-3 needs-validation')->novalidate()->open() }}
         <div class="row">
-          <div class="col-md-4">
-            <label for="name" class="form-label label">Nome</label>
-            <input type="text" class="form-control" id="name" value="" required>
+          <div class="col-md-5">
+            <label for="name" class="form-label label">Posto/Grad/Esp Nome Completo</label>
+            <div class="input-group">
+              <span class="input-group-text">
+                <i class="bi bi-person-circle"></i>
+              </span>
+              <input type="text" class="form-control" id="name" value="" required
+                placeholder="1S SAD Fulano de Tal" />
+            </div>
           </div>
+
           <div class="col-md-4">
-            <label for="email" class="form-label label">E-Mail</label>
-            <input type="email" class="form-control" id="email" value="" required>
+            <label for="email" class="form-label label">E-Mail FAB</label>
+            <div class="input-group">
+              <span class="input-group-text">
+                <i class="bi bi-envelope-at"></i>
+              </span>
+              <input type="email" class="form-control" id="email" value="" placeholder="email@fab.mil.br"
+                required>
+            </div>
           </div>
         </div> <br />
-        <div class="row">
-          <div class="col-md-2">
-            <label for="phone" class="form-label label">Tel. Contato</label>
-            <input type="text" class="form-control" id="phone" x-mask="(99) 99999-9999"
-              placeholder="(99) 99999-9999" required />
-          </div>
-          <div class="col-md-2">
-            <label for="password" class="form-label label">Senha</label>
-            <input type="password" class="form-control" id="password" value="" required>
-          </div>
-          <div class="col-md-2">
-            <label for="password-confirm" class="form-label label">Confimar Senha</label>
-            <input type="password" class="form-control" id="password-" value="" required
-              autocomplete="new-password" />
 
+        <div class="row">
+          <div class="col-md-3">
+            <label for="phone" class="form-label label">Tel. Contato</label>
+
+            <div class="input-group">
+              <span class="input-group-text">
+                <i class="bi bi-telephone"></i>
+              </span>
+              <input type="text" class="form-control" id="phone" value="" x-mask="(99) 99999-9999"
+                placeholder="(99) 99999-9999" required />
+            </div>
           </div>
+
+          <div class="col-md-3">
+            <label for="password" class="form-label label">Senha</label>
+            <div class="input-group">
+              <span class="input-group-text">
+                <i class="bi bi-lock"></i>
+              </span>
+              <input type="password" class="form-control" id="password" value="" required
+                autocomplete="new-password">
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <label for="password-confirm" class="form-label label">Confimar Senha</label>
+
+            <div class="input-group">
+              <span class="input-group-text">
+                <i class="bi bi-lock"></i>
+              </span>
+              <input type="password" class="form-control" id="password_confirmation" value="" required
+                autocomplete="new-password" />
+            </div>
+          </div>
+
         </div>
-        <hr style="margin-bottom: 5px" />
+        <hr style="margin-bottom: 5px; background-color:aliceblue" />
         <button class="btn btn-primary" type="submit">
           <i class="fa fa-save"></i>&nbsp;&nbsp;Salvar
         </button>
