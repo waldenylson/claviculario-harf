@@ -17,25 +17,32 @@
   <div class="card-body bg-gray-500">
     <div class="form-group well">
       <div class="container py-12">
-        {{ html()->form('POST', '/')->class('g-3 needs-validation')->novalidate()->open() }}
+        {{ html()->form('GET', '/usuarios/novo')->class('g-3 needs-validation')->novalidate()->open() }}
         <div class="row">
           <div class="col-md-4">
-            <label for="validationCustom01" class="form-label label">First name</label>
-            <input type="text" class="form-control" id="validationCustom01" value="" required>
+            <label for="name" class="form-label label">Nome</label>
+            <input type="text" class="form-control" id="name" value="" required>
           </div>
           <div class="col-md-4">
-            <label for="validationCustom02" class="form-label label">Last name</label>
-            <input type="text" class="form-control" id="validationCustom02" value="Otto" required>
+            <label for="email" class="form-label label">E-Mail</label>
+            <input type="email" class="form-control" id="email" value="" required>
           </div>
         </div> <br />
         <div class="row">
-          <div class="col-md-4">
-            <label for="validationCustom01" class="form-label label">First name</label>
-            <input type="text" class="form-control" id="validationCustom01" value="" required>
+          <div class="col-md-2">
+            <label for="phone" class="form-label label">Tel. Contato</label>
+            <input type="text" class="form-control" id="phone" x-data x-mask="(99) 99999-9999"
+              placeholder="(99) 99999-9999" required />
           </div>
-          <div class="col-md-4">
-            <label for="validationCustom02" class="form-label label">Last name</label>
-            <input type="text" class="form-control" id="validationCustom02" value="Otto" required>
+          <div class="col-md-2">
+            <label for="password" class="form-label label">Senha</label>
+            <input type="password" class="form-control" id="password" value="" required>
+          </div>
+          <div class="col-md-2">
+            <label for="password-confirm" class="form-label label">Confimar Senha</label>
+            <input type="password" class="form-control" id="password-" value="" required
+              autocomplete="new-password" />
+
           </div>
         </div>
         <hr style="margin-bottom: 5px" />
@@ -76,3 +83,4 @@
     margin-left: 5px;
   }
 </style>
+
