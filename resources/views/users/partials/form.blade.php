@@ -116,7 +116,7 @@
 
             <div class="input-group">
               <span class="input-group-text">
-                <i class="bi bi-shield-check"></i>
+                <i class="bi bi-pen"></i>
               </span>
               <input type="password" class="form-control" id="electronic_signature" name="electronic_signature"
                 value="{{ old('electronic_signature') }}" required />
