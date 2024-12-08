@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUsersPostRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -12,9 +13,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('users.new', [
-            'user' => 'teste',
-        ]);
+        //
     }
 
     /**
@@ -22,15 +21,17 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.new', [
+            'user' => 'teste',
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreUsersPostRequest $request)
     {
-        //
+
     }
 
     /**

@@ -16,22 +16,31 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return redirect('/dashboard');
-});
+})->middleware('verified');
 
 Route::get('/teste', function () {
-    return 290;
+    return view('auth.verify-email');
 });
 
 Route::get('/home', function () {
     return redirect('/dashboard');
-});
+})->middleware(['auth', 'verified']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/usuarios/novo', [UserController::class, 'index'])->name('users.new');
+
+
+Route::middleware('auth', 'verified')->group(function () {
+
+    Route::prefix('usuarios')->group(function () {
+
+        Route::get('/novo', [UserController::class, 'create']);
+        Route::post('/salvar', [UserController::class, 'store']);
+    });
+
+
 });
 
 require __DIR__.'/auth.php';

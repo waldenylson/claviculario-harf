@@ -8,6 +8,7 @@
     "devDependencies": {
         "@alpinejs/mask": "^3.14.6",
         "@popperjs/core": "^2.11.8",
+        "@prettier/plugin-php": "^0.22.2",
         "@shufo/prettier-plugin-blade": "^1.14.1",
         "@tailwindcss/forms": "^0.5.2",
         "alpinejs": "^3.4.2",
