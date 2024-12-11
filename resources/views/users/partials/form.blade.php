@@ -112,7 +112,7 @@
           </div>
 
           <div class="col-md-4">
-            <label for="electronic_signature" class="form-label label">Assinatura Eletrônica (Retirada de Chave)</label>
+            <label for="electronic_signature" class="form-label label">Assinatura Eletrônica </label>
 
             <div class="input-group">
               <span class="input-group-text">
