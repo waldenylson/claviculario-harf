@@ -31,6 +31,11 @@ class UserController extends Controller
      */
     public function store(StoreUsersPostRequest $request)
     {
+        $dominio = explode("@", $request['email']);
+
+        if ($dominio[1] !== "fab.mil.br") {
+            return redirect()->back()->withErrors("E-Mail FAB Obrigatório!")->withInput();
+        }
 
     }
 

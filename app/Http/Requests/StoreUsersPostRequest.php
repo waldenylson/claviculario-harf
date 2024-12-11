@@ -27,11 +27,9 @@ class StoreUsersPostRequest extends FormRequest
 
         $input['name'] = $dominio[0];
 
-        if ($dominio[1] !== "fab.mil.br") {
-            return redirect()->back()->withErrors("E-Mail FAB Obrigatório!")->withInput();
-        }
-
         $this->replace($input);
+
+
 
         return [
             'full_name'  => 'required|min:10',
