@@ -20,6 +20,11 @@
     core-js-pure "^3.30.2"
     regenerator-runtime "^0.14.0"
 
+"@eonasdan/tempus-dominus@^6.9.11":
+  version "6.9.11"
+  resolved "https://registry.npmjs.org/@eonasdan/tempus-dominus/-/tempus-dominus-6.9.11.tgz"
+  integrity sha512-KFOyMoCy6OCIl0dzWq4it2zu/jV4YWrSxxLmXR2XClVV9D9f/DaLjEhADJCYSjWBlTYanE18ACjVoyrfsHikgA==
+
 "@esbuild/linux-x64@0.21.5":
   version "0.21.5"
   resolved "https://registry.npmjs.org/@esbuild/linux-x64/-/linux-x64-0.21.5.tgz"
@@ -139,7 +144,7 @@
   resolved "https://registry.npmjs.org/@pkgjs/parseargs/-/parseargs-0.11.0.tgz"
   integrity sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==
 
-"@popperjs/core@^2.11.8":
+"@popperjs/core@^2.11.6", "@popperjs/core@^2.11.8":
   version "2.11.8"
   resolved "https://registry.npmjs.org/@popperjs/core/-/core-2.11.8.tgz"
   integrity sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==
@@ -817,6 +822,16 @@ jiti@^1.19.1:
   resolved "https://registry.npmjs.org/jiti/-/jiti-1.21.0.tgz"
   integrity sha512-gFqAIbuKyyso/3G2qhiO2OM6shY6EPP/R0+mkDbyspxKazh8BXDC5FiFsUjlczgdNz/vfra0da2y+aHrusLG/Q==
 
+jquery-mask-plugin@^1.14.16:
+  version "1.14.16"
+  resolved "https://registry.npmjs.org/jquery-mask-plugin/-/jquery-mask-plugin-1.14.16.tgz"
+  integrity sha512-reywdHlYEkPbzWjTpcc1fk9XQ3PLvO5dzEAVqy8zI7NTF22tB1HbeU3iboZTLdkBEPaWAqeI2HtEjsGQ4roZKw==
+
+jquery@^4.0.0-beta.2:
+  version "4.0.0-beta.2"
+  resolved "https://registry.npmjs.org/jquery/-/jquery-4.0.0-beta.2.tgz"
+  integrity sha512-2/cB7q2vtwltOGph8cNaNBRfVRdewrgdmYipXJ9ZYLQOPYjBKHH8+l5ZLVTFV7emKVIPXwDP3excXS0zUcx9kw==
+
 js-beautify@^1.14.8:
   version "1.15.1"
   resolved "https://registry.npmjs.org/js-beautify/-/js-beautify-1.15.1.tgz"
@@ -942,9 +957,9 @@ mz@^2.7.0:
     thenify-all "^1.0.0"
 
 nanoid@^3.3.7:
-  version "3.3.7"
-  resolved "https://registry.npmjs.org/nanoid/-/nanoid-3.3.7.tgz"
-  integrity sha512-eSRppjcPIatRIMC1U6UngP8XFcz8MQWGQdt1MTBQ7NaAmvXDfvNxbvWV3x2y6CdEUciCSsDHDQZbhYaB8QEo2g==
+  version "3.3.8"
+  resolved "https://registry.npmjs.org/nanoid/-/nanoid-3.3.8.tgz"
+  integrity sha512-WNLf5Sd8oZxOm+TzppcYk8gVOgP+l58xNy58D0nbUnOxOWRWvlcCV4kUF7ltmI6PsrLl/BgKEyS4mqsGChFN0w==
 
 node-addon-api@^7.0.0:
   version "7.1.1"
@@ -1354,10 +1369,10 @@ supports-preserve-symlinks-flag@^1.0.0:
   resolved "https://registry.npmjs.org/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
 
-sweetalert2@^11.14.5:
-  version "11.14.5"
-  resolved "https://registry.npmjs.org/sweetalert2/-/sweetalert2-11.14.5.tgz"
-  integrity sha512-8MWk5uc/r6bWhiJWkUXyEuApfXAhSCZT8FFX7pZXL7YwaPxq+9Ynhi2dUzWkOFn9jvLjKj22CXuccZ+IHcnjvQ==
+sweetalert2@^11.6.13:
+  version "11.15.0"
+  resolved "https://registry.npmjs.org/sweetalert2/-/sweetalert2-11.15.0.tgz"
+  integrity sha512-34Xs0CFBac6I1cGG9d+XaBqJrp0F/0prr8rMYOcU0shU/XmkGkRtlCxWNi7PdKYGw9Qf6aoEHNYicX3au37nkw==
 
 tailwindcss@^3.1.0, tailwindcss@^3.1.8, tailwindcss@^3.3.2, "tailwindcss@>=3.0.0 || >= 3.0.0-alpha.1":
   version "3.4.1"

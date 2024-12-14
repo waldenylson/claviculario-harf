@@ -82,8 +82,8 @@
               <span class="input-group-text">
                 <i class="bi bi-telephone"></i>
               </span>
-              <input type="text" class="form-control" id="phone" name="phone" value="{{ old('phone') }}"
-                x-mask="(99) 99999-9999" placeholder="(99) 99999-9999" required />
+              <input type="text" class="form-control masked-cel-phone" id="phone" name="phone" value="{{ old('phone') }}"
+                 placeholder="(99) 99999-9999" required />
             </div>
           </div>
         </div><br />
@@ -122,6 +122,32 @@
                 value="{{ old('electronic_signature') }}" required />
             </div>
           </div>
+        </div> <br />
+
+        <div class="row">
+            <div class="col-sm-10" id="htmlTarget">
+            <label for="datetimepicker1Input" class="form-label">Teste Tempus Dominus Date&Time Picker Lib</label>
+            <div
+                class="input-group log-event"
+                id="datetimepicker1"
+                data-td-target-input="nearest"
+                data-td-target-toggle="nearest"
+            >
+                <input
+                id="datetimepicker1Input"
+                type="text"
+                class="form-control"
+                data-td-target="#datetimepicker1"
+                />
+                <span
+                class="input-group-text"
+                data-td-target="#datetimepicker1"
+                data-td-toggle="datetimepicker"
+                >
+                <i class="fas fa-calendar"></i>
+                </span>
+            </div>
+            </div>
         </div>
 
         <hr style="margin-bottom: 5px; background-color:aliceblue" />

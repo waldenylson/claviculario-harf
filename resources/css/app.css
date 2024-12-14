@@ -6,6 +6,7 @@
 
 @import url("@bootstrap/css/bootstrap.min.css");
 @import url("@nm/bootstrap-icons/font/bootstrap-icons.min.css");
+@import url("@tmpdominus/css/tempus-dominus.min.css");
 
 @tailwind base;
 @tailwind components;

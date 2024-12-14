@@ -27,7 +27,12 @@ export default defineConfig({
                 __dirname,
                 "node_modules/bootstrap/dist",
             ),
+            "@tmpdominus": path.resolve(
+                __dirname,
+                "node_modules/@eonasdan/tempus-dominus/dist",
+            ),
             "@nm": path.resolve(__dirname, "node_modules/"),
+            $: "jQuery",
         },
     },
 });
