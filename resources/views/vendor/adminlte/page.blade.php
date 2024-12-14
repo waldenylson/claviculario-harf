@@ -50,6 +50,7 @@
         @endif
 
     </div>
+    @include('support.alerts')
 @stop
 
 @section('adminlte_js')

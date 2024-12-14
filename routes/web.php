@@ -43,4 +43,8 @@ Route::middleware('auth', 'verified')->group(function () {
 
 });
 
+Route::get('/test-alert', function () {
+    return redirect()->back()->with('message', 'minha Chibata!');
+});
+
 require __DIR__.'/auth.php';

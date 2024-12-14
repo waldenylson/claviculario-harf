@@ -37,22 +37,24 @@ class UserController extends Controller
      */
     public function store(StoreUsersPostRequest $request)
     {
+        return redirect()->back()->with('error', 'Erro ao Tentar Inserir o Registro!');
+
+
         $dominio = explode("@", $request['email']);
 
         if ($dominio[1] !== "fab.mil.br") {
             return redirect()->back()->withErrors("E-Mail FAB Obrigatório!")->withInput();
         }
 
-//        dd($request);
+        //        dd($request);
 
-        $result = $this->usersRepository->store($request);
+        // $result = $this->usersRepository->store($request);
 
-        if ($result)
-        {
-            return redirect()->back()->with('message', 'Registro Inserido com Sucesso!');
-        }
+        // if (true)
+        // {
+        //     return redirect()->back()->with('message', 'Registro Inserido com Sucesso!');
+        // }
 
-        return redirect()->back()->with('error', 'Erro ao Tentar Inserir o Registro!');
 
 
     }
