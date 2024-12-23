@@ -7,9 +7,9 @@ use App\Models\User;
 
 class UserRepository implements UserRepositoryContract
 {
-    protected $modelClass = User::class;
+    protected string $modelClass = User::class;
 
-    public function listUsers()
+    public function listUsers(): \Illuminate\Database\Eloquent\Collection
     {
         return $this->modelClass::all();
     }
@@ -41,7 +41,7 @@ class UserRepository implements UserRepositoryContract
         return $user->delete();
     }
 
-    public function getAllUsersForSelect()
+    public function getAllUsersForSelect(): array
     {
         $baseArray = $this->modelClass::all();
         $users = array();

@@ -19,7 +19,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $usuarios = $this->usersRepository->listUsers();
+
+        return view('users.index')->with(compact('usuarios'));
     }
 
     /**
@@ -37,8 +39,6 @@ class UserController extends Controller
      */
     public function store(StoreUsersPostRequest $request)
     {
-        return redirect()->back()->with('error', 'Erro ao Tentar Inserir o Registro!');
-
 
         $dominio = explode("@", $request['email']);
 
@@ -46,14 +46,17 @@ class UserController extends Controller
             return redirect()->back()->withErrors("E-Mail FAB Obrigatório!")->withInput();
         }
 
-        //        dd($request);
+        // if ($request['password_confirmation'] !== $request['password']) {
+        //     return redirect()->back()->withErrors("Senhas não coincidem!")->withInput();
+        // }
 
         // $result = $this->usersRepository->store($request);
 
-        // if (true)
-        // {
-        //     return redirect()->back()->with('message', 'Registro Inserido com Sucesso!');
-        // }
+        if (false) {
+            return redirect()->back()->with('message', 'Registro Inserido com Sucesso!');
+        }
+
+        return redirect()->back()->with('error', 'Erro ao Tentar Inserir o Registro!');
 
 
 

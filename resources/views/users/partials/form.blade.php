@@ -100,7 +100,7 @@
           </div>
 
           <div class="col-md-3">
-            <label for="password-confirm" class="form-label label">Confimar Senha</label>
+            <label for="password_confirm" class="form-label label">Confimar Senha</label>
 
             <div class="input-group">
               <span class="input-group-text">

@@ -29,8 +29,6 @@ class StoreUsersPostRequest extends FormRequest
 
         $this->replace($input);
 
-
-
         return [
             'full_name'  => 'required|min:10',
             'service_name'    => 'required|min:3',
@@ -40,7 +38,8 @@ class StoreUsersPostRequest extends FormRequest
             'name' => 'required',
             'email' => 'required|email',
             'phone' => 'required',
-            'password' => 'required',
+            'password' => 'required|confirmed|min:6',
+            'electronic_signature' => 'required|min:6|max:6|regex:/^\d+$/',
         ];
     }
 
@@ -60,6 +59,12 @@ class StoreUsersPostRequest extends FormRequest
             'email.required'  => 'E-Mail é Obrigatório!',
             'phone.required'  => 'Tel. Contato é Obrigatório!',
             'password.required'  => 'Senha é Obrigatório!',
+            'password.confirmed'  => 'Senhas não coincidem!',
+            'password.min'  => 'Senha deve ter pelo menos :min caracteres!',
+            'electronic_signature.required'  => 'Assinatura Eletrônica é Obrigatório!',
+            'electronic_signature.min'  => 'Assinatura Eletrônica deve ter :min caracteres!',
+            'electronic_signature.max'  => 'Assinatura Eletrônica deve ter :max caracteres!',
+            'electronic_signature.regex'  => 'Assinatura Eletrônica deve conter apenas números!',
         ];
     }
 

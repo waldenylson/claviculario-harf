@@ -36,6 +36,7 @@ Route::middleware('auth', 'verified')->group(function () {
 
     Route::prefix('usuarios')->group(function () {
 
+        Route::get('/', [UserController::class, 'index']);
         Route::get('/novo', [UserController::class, 'create']);
         Route::post('/salvar', [UserController::class, 'store']);
     });
