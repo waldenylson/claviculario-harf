@@ -46,10 +46,6 @@ class UserController extends Controller
             return redirect()->back()->withErrors("E-Mail FAB Obrigatório!")->withInput();
         }
 
-        // if ($request['password_confirmation'] !== $request['password']) {
-        //     return redirect()->back()->withErrors("Senhas não coincidem!")->withInput();
-        // }
-
         // $result = $this->usersRepository->store($request);
 
         if (false) {
