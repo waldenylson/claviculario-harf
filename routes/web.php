@@ -1,18 +1,15 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+Route::get('/test-email', function () {
+    Mail::raw('E-mail de teste do Laravel via OpenSMTPD!', function ($message) {
+        $message->to('waldenylsonwpss@fab.mil.br')->subject('Teste E-mail');
+    });
+    return 'E-mail enviado! Verifique o log do OpenSMTPD.';
+});
 
 Route::get('/', function () {
     return redirect('/dashboard');
@@ -44,8 +41,17 @@ Route::middleware('auth', 'verified')->group(function () {
 
 });
 
-Route::get('/test-alert', function () {
-    return redirect()->back()->with('message', 'minha Chibata!');
-});
+// Route::get('/test-email', function () {
+
+//     $msg = "First line of text\nSecond line of text";
+
+//     // use wordwrap() if lines are longer than 70 characters
+//     $msg = wordwrap($msg, 70);
+
+//     // send email
+//     mail("waldenylsonwpss@fab.mil.br", "Teste E-mail", $msg);
+
+//     return redirect()->back()->with('message', 'minha Chibata!');
+// });
 
 require __DIR__.'/auth.php';

@@ -1,0 +1,66 @@
+# services definition.
+services:
+  # PostgresSQL
+  # claviculario-database:
+  #   image: postgres:16.1-alpine3.19
+  #   container_name: claviculario-database
+  #   stdin_open: true
+  #   tty: true
+  #   restart: always
+  #   volumes:
+  #     # - /path/to/fisical/data/storage:/var/lib/mysql
+  #     - ./postgresql-data:/var/lib/postgresql/data
+  #   ports:
+  #     - "5432:5432"
+  #   environment:
+  #     - POSTGRES_PASSWORD=clavicularioHarf
+  #     - POSTGRES_DB=clavicularioHarf
+  #     - POSTGRES_USER=clavicularioHarf
+
+  # Redis
+  # claviculario-cache: # Redis: For Laravel caching, queue, session and others.
+  #   image: redis:7.2.4-alpine
+  #   container_name: claviculario-cache
+  #   command: "redis-server --requirepass claviculario" # authenticated with a password.
+  #   volumes:
+  #     - ./redis-data:/data # persist Redis data ("/data") on volume "redis-data".
+  #   ports:
+  #     - 6379:6379 # Port 6379 => Default Redis TCP port.
+
+
+  # PHP (with frankenphp)
+  claviculario-web-server:
+    image: serversideup/php:8.4-unit
+    container_name: claviculario-app
+    volumes:
+      - ../../:/var/www/html
+    ports:
+      - "8080:8080"
+      - "443:443"
+      - "443:443/udp"
+    environment:
+      - MAIL_MAILER=smtp
+      - MAIL_HOST=smtpteste
+      - MAIL_PORT=25
+      - MAIL_USERNAME=null
+      - MAIL_PASSWORD=null
+      - MAIL_ENCRYPTION=null
+    depends_on:
+      - smtpteste
+    links:
+      # - claviculario-database
+      # - claviculario-cache
+      - smtpteste
+
+
+  smtpteste:
+    image: namshi/smtp
+    container_name: smtpteste
+    restart: unless-stopped
+    # volumes:
+    #   - ./opensmtpd:/etc/mail
+    ports:
+      - "1025:25" # Porta SMTP
+    # environment:
+      # - RELAY_HOST=your.relay.server.com # Substitua se usar um relay externo
+
