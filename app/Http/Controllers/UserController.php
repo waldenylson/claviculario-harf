@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Repositories\Users\UserRepository;
 use App\Http\Requests\StoreUsersPostRequest;
+use Illuminate\Auth\Events\Registered;
 
 class UserController extends Controller
 {
@@ -46,9 +47,13 @@ class UserController extends Controller
             return redirect()->back()->withErrors("E-Mail FAB Obrigatório!")->withInput();
         }
 
-        // $result = $this->usersRepository->store($request);
+        $result = $this->usersRepository->store($request);
 
-        if (false) {
+        // dd($result);
+
+        if ($result) {
+            event(new Registered($result));
+
             return redirect()->back()->with('message', 'Registro Inserido com Sucesso!');
         }
 

@@ -3,6 +3,9 @@
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+
 
 Route::get('/test-email', function () {
     Mail::raw('E-mail de teste do Laravel via OpenSMTPD!', function ($message) {
@@ -11,25 +14,24 @@ Route::get('/test-email', function () {
     return 'E-mail enviado! Verifique o log do OpenSMTPD.';
 });
 
-Route::get('/', function () {
-    return redirect('/dashboard');
-})->middleware('verified');
-
-Route::get('/teste', function () {
-    return view('auth.verify-email');
-});
-
-Route::get('/home', function () {
-    return redirect('/dashboard');
-})->middleware(['auth', 'verified']);
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-
 
 Route::middleware('auth', 'verified')->group(function () {
+
+    Route::get('/', function () {
+        return redirect('/dashboard');
+    })->middleware('verified');
+
+    // Route::get('/teste', function () {
+    //     return view('auth.verify-email');
+    // });
+
+    Route::get('/home', function () {
+        return redirect('/dashboard');
+    })->middleware(['auth', 'verified']);
+
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->middleware(['auth', 'verified'])->name('dashboard');
 
     Route::prefix('usuarios')->group(function () {
 
@@ -41,17 +43,19 @@ Route::middleware('auth', 'verified')->group(function () {
 
 });
 
-// Route::get('/test-email', function () {
 
-//     $msg = "First line of text\nSecond line of text";
+Route::get('verify-email/{id}/{hash}', function (Request $request) {
 
-//     // use wordwrap() if lines are longer than 70 characters
-//     $msg = wordwrap($msg, 70);
+    // dd($request);
 
-//     // send email
-//     mail("waldenylsonwpss@fab.mil.br", "Teste E-mail", $msg);
+    $result = DB::table('users')
+        ->where('id', $request->id)
+        ->update(['email_verified_at' => DB::raw('CURRENT_TIMESTAMP'), 'updated_at' => DB::raw('CURRENT_TIMESTAMP')]);
 
-//     return redirect()->back()->with('message', 'minha Chibata!');
-// });
+    if ($result) {
+        return view('auth.verify-email-confirmation')->with('message', 'E-mail validado com Sucesso!');
+    }
+})->name('verification.verify');
+
 
 require __DIR__.'/auth.php';
