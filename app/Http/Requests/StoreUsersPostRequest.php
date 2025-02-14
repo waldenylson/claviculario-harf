@@ -15,6 +15,19 @@ class StoreUsersPostRequest extends FormRequest
     }
 
     /**
+     * Manipula os dados de entrada antes de aplicar as regras de validação.
+     */
+    protected function prepareForValidation()
+    {
+        if ($this->filled('email')) {
+            $email = $this->input('email');
+            $this->merge([
+                'name' => explode('@', $email)[0],
+            ]);
+        }
+    }
+
+    /**
      * Get the validation rules that apply to the request.
      *
      * @return array
@@ -23,11 +36,19 @@ class StoreUsersPostRequest extends FormRequest
     {
         $input = $this->all();
 
-        $dominio = explode("@", $input['email']);
+        // // Verifica se o campo email existe antes de manipulá-lo
+        // if (isset($input['email'])) {
+        //     $dominio = explode("@", $input['email']);
+        //     // Caso queira definir o campo "name" com base no email
+        //     $input['name'] = $dominio[0];
+        //     $this->replace($input);
+        // }
 
-        $input['name'] = $dominio[0];
+        // $dominio = explode("@", $input['email']);
 
-        $this->replace($input);
+        // $input['name'] = $dominio[0];
+
+        // $this->replace($input);
 
         return [
             'full_name'  => 'required|min:10',

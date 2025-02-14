@@ -25,7 +25,13 @@ class UserFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
+            'full_name' => fake()->name(),
+            'service_name' => fake()->name(),
+            'military_rank'         => '1S SAD',
+            'email'                 => 'email@fab.mil.br',
+            'military_unit'         => 'CINDACTA III - TISI',
+            'phone'                 => '(99) 99999-9999',
+            'electronic_signature'  => 'secret123',
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
