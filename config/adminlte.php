@@ -301,7 +301,7 @@ return [
         ['header' => 'CONTAS DE USUÁRIO', 'key' => 'users_acounts', 'classes' => 'fa fa-users'],
         [
             'text' => 'Listar Todas',
-            'url'  => '#',
+            'url'  => 'usuarios',
             'icon' => 'fas fa-fw fa-rectangle-list',
             'icon_color' => 'info',
             'label_color' => 'info'

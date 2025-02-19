@@ -57,8 +57,8 @@ services:
     image: namshi/smtp
     container_name: smtpteste
     restart: unless-stopped
-    # volumes:
-    #   - ./opensmtpd:/etc/mail
+    volumes:
+      - ./opensmtpd:/etc/mail
     ports:
       - "1025:25" # Porta SMTP
     # environment:

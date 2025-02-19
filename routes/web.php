@@ -57,5 +57,10 @@ Route::get('verify-email/{id}/{hash}', function (Request $request) {
     }
 })->name('verification.verify');
 
+// Página para exibir o aviso de verificação (Route [verification.notice])
+Route::get('/email/verify', function () {
+    return view('auth.verify-email'); // Certifique-se de que a view auth.verify existe
+})->middleware('auth')->name('verification.notice');
+
 
 require __DIR__.'/auth.php';
