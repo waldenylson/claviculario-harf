@@ -32,9 +32,7 @@ class UserController extends Controller
     {
         //return redirect()->back()->with('error', 'Erro ao Tentar Inserir o Registro!');
 
-        return view('users.new', [
-            'user' => 'teste',
-        ]);
+        return view('users.new');
     }
 
     /**

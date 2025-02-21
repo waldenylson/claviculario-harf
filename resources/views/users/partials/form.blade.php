@@ -1,13 +1,3 @@
-@if ($errors->any())
-  <div class="alert alert-danger">
-    <ul>
-      @foreach ($errors->all() as $error)
-        <li>{!! $error !!}</li>
-      @endforeach
-    </ul>
-  </div>
-@endif
-
 <!-- /.card-header -->
 <div class="card-body bg-gray-500">
 <div class="form-group well">
@@ -100,7 +90,7 @@
             <span class="input-group-text">
             <i class="bi bi-lock"></i>
             </span>
-            <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
+            <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" {{ isset($user) ? '' : 'required' }}>
         </div>
         </div>
 
@@ -111,7 +101,7 @@
             <span class="input-group-text">
             <i class="bi bi-pen"></i>
             </span>
-            <input type="password" class="form-control" id="electronic_signature" name="electronic_signature" value="{{ old('electronic_signature', $user->electronic_signature ?? '') }}" required />
+            <input type="text" class="form-control" id="electronic_signature" name="electronic_signature" {{ isset($user) ? '' : 'required' }} />
         </div>
         </div>
     </div> <br />

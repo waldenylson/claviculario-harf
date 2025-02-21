@@ -4,6 +4,7 @@ namespace App\Http\Repositories\Users;
 
 use App\Http\Requests\StoreUsersPostRequest;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserRepository implements UserRepositoryContract
 {
@@ -31,7 +32,21 @@ class UserRepository implements UserRepositoryContract
 
     public function persistUpdate(StoreUsersPostRequest $request, $id)
     {
-        return $this->modelClass::findOrFail($id)->update($request->all());
+        $validatedData = $request->validated();
+
+        if ($request->filled('electronic_signature')) {
+            $validatedData['electronic_signature'] = Hash::make($request->electronic_signature);
+        } else {
+            unset($validatedData['electronic_signature']);
+        }
+
+        if ($request->filled('password')) {
+            $validatedData['password'] = Hash::make($request->password);
+        } else {
+            unset($validatedData['password']);
+        }
+
+        return $this->modelClass::findOrFail($id)->update($validatedData);
     }
 
     public function destroy($id)

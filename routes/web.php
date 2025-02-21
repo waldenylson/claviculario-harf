@@ -39,7 +39,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/novo', [UserController::class, 'create']);
         Route::post('/salvar', [UserController::class, 'store']);
         Route::get('/editar/{id}', [UserController::class, 'edit'])->name('usuarios.edit');
-        Route::post('/atualizar/{id}', [UserController::class, 'update'])->name('usuarios.update');
+        Route::put('/atualizar/{id}', [UserController::class, 'update'])->name('usuarios.update');
         Route::delete('/usuarios/{id}', [UserController::class, 'destroy'])->name('usuarios.destroy');
     });
 

@@ -34,23 +34,7 @@ class StoreUsersPostRequest extends FormRequest
      */
     public function rules()
     {
-        $input = $this->all();
-
-        // // Verifica se o campo email existe antes de manipulá-lo
-        // if (isset($input['email'])) {
-        //     $dominio = explode("@", $input['email']);
-        //     // Caso queira definir o campo "name" com base no email
-        //     $input['name'] = $dominio[0];
-        //     $this->replace($input);
-        // }
-
-        // $dominio = explode("@", $input['email']);
-
-        // $input['name'] = $dominio[0];
-
-        // $this->replace($input);
-
-        return [
+        $rules = [
             'full_name'  => 'required|min:10',
             'service_name'    => 'required|min:3',
             'military_rank'    => 'required|min:5',
@@ -59,9 +43,20 @@ class StoreUsersPostRequest extends FormRequest
             'name' => 'required',
             'email' => 'required|email',
             'phone' => 'required',
-            'password' => 'required|confirmed|min:6',
-            'electronic_signature' => 'required|min:6|max:6|regex:/^\d+$/',
+
         ];
+
+        if ($this->isMethod('post')) {
+            // Regras para criação
+            $rules['electronic_signature'] = 'required|min:6|max:6|regex:/^\d+$/';
+            $rules['password'] = 'required|confirmed|min:6';
+        } else if ($this->isMethod('put') || $this->isMethod('patch')) {
+            // Regras para atualização
+            $rules['electronic_signature'] = 'nullable';
+            $rules['password'] = 'nullable';
+        }
+
+        return $rules;
     }
 
     public function messages()
