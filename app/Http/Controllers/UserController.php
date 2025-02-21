@@ -40,16 +40,9 @@ class UserController extends Controller
      */
     public function store(StoreUsersPostRequest $request)
     {
-
-        $dominio = explode("@", $request['email']);
-
-        if ($dominio[1] !== "fab.mil.br") {
-            return redirect()->back()->withErrors("E-Mail FAB Obrigatório!")->withInput();
-        }
+        $this->checkEmailFAB($request);
 
         $result = $this->usersRepository->store($request);
-
-        // dd($result);
 
         if ($result) {
             event(new Registered($result));
@@ -58,9 +51,6 @@ class UserController extends Controller
         }
 
         return redirect()->back()->with('error', 'Erro ao Tentar Inserir o Registro!');
-
-
-
     }
 
     /**
@@ -86,6 +76,8 @@ class UserController extends Controller
      */
     public function update(StoreUsersPostRequest $request, $id)
     {
+        $this->checkEmailFAB($request);
+
         $result = $this->usersRepository->persistUpdate($request, $id);
 
         if ($result) {
@@ -111,5 +103,14 @@ class UserController extends Controller
         }
 
         return redirect()->back()->with('error', 'Erro ao Tentar Remover o Registro!');
+    }
+
+    private function checkEmailFAB($request)
+    {
+        $dominio = explode("@", $request['email']);
+
+        if ($dominio[1] !== "fab.mil.br") {
+            return redirect()->back()->withErrors("E-Mail FAB Obrigatório!")->withInput();
+        }
     }
 }
