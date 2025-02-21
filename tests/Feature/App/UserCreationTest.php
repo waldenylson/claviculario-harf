@@ -13,9 +13,9 @@ class UserCreationTest extends TestCase
     /**
      * Cria um usuário de teste e retorna-o.
      */
-    private function createTestUser()
+    private function createTestUser(): User
     {
-        return User::factory()->create();
+        return User::factory()->create()->first();
     }
 
     /**

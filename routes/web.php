@@ -15,7 +15,7 @@ Route::get('/test-email', function () {
 });
 
 
-Route::middleware('auth', 'verified')->group(function () {
+Route::middleware('auth')->group(function () {
 
     Route::get('/', function () {
         return redirect('/dashboard');
@@ -38,6 +38,9 @@ Route::middleware('auth', 'verified')->group(function () {
         Route::get('/', [UserController::class, 'index']);
         Route::get('/novo', [UserController::class, 'create']);
         Route::post('/salvar', [UserController::class, 'store']);
+        Route::get('/editar/{id}', [UserController::class, 'edit'])->name('usuarios.edit');
+        Route::post('/atualizar/{id}', [UserController::class, 'update'])->name('usuarios.update');
+        Route::delete('/usuarios/{id}', [UserController::class, 'destroy'])->name('usuarios.destroy');
     });
 
 

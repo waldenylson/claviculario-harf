@@ -76,24 +76,42 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(int $id)
+    public function edit($id)
     {
-        //
+        $user = $this->usersRepository->edit($id);
+
+        return view('users.edit', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreUsersPostRequest $request, int $id)
+    public function update(StoreUsersPostRequest $request, $id)
     {
-        //
+        $result = $this->usersRepository->persistUpdate($request, $id);
+
+        if ($result) {
+            return redirect()->back()->with('message', 'Registro Alterado com Sucesso!');
+        }
+
+        return redirect()->back()->with('error', 'Erro ao Tentar Alterar o Registro!');
+
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove um registro especifico do Banco.
+     *
+     * @param  int  $id
+     * @return Response
      */
-    public function destroy(int $id)
+    public function destroy($id)
     {
-        //
+        $result = $this->usersRepository->destroy($id);
+
+        if ($result) {
+            return redirect()->back()->with('message', 'Registro Removido com Sucesso!');
+        }
+
+        return redirect()->back()->with('error', 'Erro ao Tentar Remover o Registro!');
     }
 }
