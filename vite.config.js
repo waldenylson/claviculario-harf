@@ -10,13 +10,7 @@ export default defineConfig({
                 "resources/css/custom.css",
                 "resources/js/app.js",
             ],
-
-            refresh: true, //[
-            //     "resources/routes/**",
-            //     "routes/**",
-            //     "resources/views/**",
-            //     "config/adminlte.php",
-            // ],
+            refresh: true,
         }),
     ],
 
