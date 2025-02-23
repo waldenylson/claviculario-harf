@@ -38,7 +38,8 @@
                     <a href="{{ route('usuarios.edit', $usuario->id) }}" class="btn btn-sm btn-warning mx-1">
                       <i class="fa fa-edit"></i>
                     </a>
-                    <button class="btn btn-sm btn-danger mx-1 btn-delete" data-id="{{ $usuario->id }}"
+                    <button class="btn btn-sm btn-danger mx-1 btn-delete"
+                      data-link="{{ route('usuarios.destroy', $usuario->id) }}" data-id="{{ $usuario->id }}"
                       data-name="{{ $usuario->full_name }}">
                       <i class="fa fa-trash"></i>
                     </button>
@@ -70,6 +71,7 @@
         button.addEventListener('click', () => {
           const userId = button.getAttribute('data-id');
           const userName = button.getAttribute('data-name');
+          const route = button.getAttribute('data-link');
 
           Swal.fire({
             title: 'Confirma a exclusão?',
@@ -82,8 +84,7 @@
             cancelButtonText: 'Cancelar'
           }).then((result) => {
             if (result.isConfirmed) {
-              // Define a ação do formulário e o envia
-              formDelete.action = `/usuarios/${userId}`;
+              formDelete.setAttribute('action', route);
               formDelete.submit();
             }
           });

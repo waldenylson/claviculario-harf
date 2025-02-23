@@ -3,6 +3,8 @@
 @inject('layoutHelper', 'JeroenNoten\LaravelAdminLte\Helpers\LayoutHelper')
 @inject('preloaderHelper', 'JeroenNoten\LaravelAdminLte\Helpers\PreloaderHelper')
 
+@vite(['resources/css/app.css', 'resources/js/app.js', 'resources/js/generic.js'])
+
 @section('adminlte_css')
     @stack('css')
     @yield('css')

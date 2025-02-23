@@ -40,7 +40,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/salvar', [UserController::class, 'store']);
         Route::get('/editar/{id}', [UserController::class, 'edit'])->name('usuarios.edit');
         Route::put('/atualizar/{id}', [UserController::class, 'update'])->name('usuarios.update');
-        Route::delete('/usuarios/{id}', [UserController::class, 'destroy'])->name('usuarios.destroy');
+        Route::delete('/excluir/{id}', [UserController::class, 'destroy'])->name('usuarios.destroy');
     });
 
 

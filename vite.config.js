@@ -9,6 +9,7 @@ export default defineConfig({
                 "resources/css/app.css",
                 "resources/css/custom.css",
                 "resources/js/app.js",
+                "resources/js/generic.js",
             ],
             refresh: true,
         }),
@@ -26,7 +27,7 @@ export default defineConfig({
                 "node_modules/@eonasdan/tempus-dominus/dist",
             ),
             "@nm": path.resolve(__dirname, "node_modules/"),
-            $: "jQuery",
+            jquery: "jquery/dist/jquery.min.js",
         },
     },
 });

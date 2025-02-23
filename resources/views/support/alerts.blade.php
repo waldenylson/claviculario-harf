@@ -1,15 +1,16 @@
 @if(session('message'))
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            Swal.fire({
+            setTimeout(() => {
+                Swal.fire({
                 title: 'Success!',
-                text: '{{ session('success') }}',
+                text: "{{ Session::get('message') }}",
                 icon: 'success',
                 confirmButtonText: 'OK',
                 allowOutsideClick: false,
                 allowEscapeKey: false,
             });
-            // Swal.fire("", "{!! Session::get('message') !!}", "success");
+            }, 1000);
         });
     </script>
 @endif
@@ -17,15 +18,16 @@
 @if(session('error'))
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            Swal.fire({
+            setTimeout(() => {
+                Swal.fire({
                 title: 'Error!',
-                text: '{{ session('error') }}',
+                text: "{{ Session::get('error') }}",
                 icon: 'error',
                 confirmButtonText: 'OK',
                 allowOutsideClick: false,
                 allowEscapeKey: false,
             });
-            // Swal.fire("", "{!! Session::get('error') !!}", "error");
+            }, 1000);
 
         });
     </script>

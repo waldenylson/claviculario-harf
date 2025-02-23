@@ -1,3 +1,11 @@
+import Swal from "sweetalert2"; // Importação do SweetAlert2
+window.Swal = Swal;
+
+import $ from "jquery"; // Importa jQuery
+window.$ = window.jQuery = $; // Torna jQuery acessível globalmente
+
+import "jquery-mask-plugin"; // Importa o plugin de máscara
+
 import { TempusDominus } from "@eonasdan/tempus-dominus";
 
 $(function () {
