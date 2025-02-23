@@ -5,8 +5,7 @@
 
   <div class="card  direct-chat" style="width: 90%">
     <div class="card-header">
-      <h1 class="card-title">Listagem de Usuários</h1>
-
+<h1 class="card-title">Listagem de Usuários</h1>
     </div>
     <div class="card-body bg-gray-500">
       <div class="form-group well">
@@ -93,10 +92,10 @@
     });
   </script>
 
-  <!-- /.card-body -->
-  <div class="card-footer">
-
-  </div>
-  <!-- /.card-footer-->
-
+<style>
+    .label {
+      margin-bottom: 0px;
+      margin-left: 5px;
+    }
+  </style>
 @stop

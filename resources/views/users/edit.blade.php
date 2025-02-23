@@ -12,10 +12,4 @@
     {{ html()->form()->close() }}
   </div>
 
-  <!-- /.card-body -->
-  <div class="card-footer">
-
-  </div>
-  <!-- /.card-footer-->
-
 @stop
