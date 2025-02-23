@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\EfetivoController;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
@@ -41,6 +42,16 @@ Route::middleware('auth')->group(function () {
         Route::get('/editar/{id}', [UserController::class, 'edit'])->name('usuarios.edit');
         Route::put('/atualizar/{id}', [UserController::class, 'update'])->name('usuarios.update');
         Route::delete('/excluir/{id}', [UserController::class, 'destroy'])->name('usuarios.destroy');
+    });
+
+    Route::prefix('efetivo')->group(function () {
+
+        Route::get('/', [EfetivoController::class, 'index']);
+        Route::get('/novo', [EfetivoController::class, 'create']);
+        Route::post('/salvar', [EfetivoController::class, 'store']);
+        Route::get('/editar/{id}', [EfetivoController::class, 'edit'])->name('efetivo.edit');
+        Route::put('/atualizar/{id}', [EfetivoController::class, 'update'])->name('efetivo.update');
+        Route::delete('/excluir/{id}', [EfetivoController::class, 'destroy'])->name('efetivo.destroy');
     });
 
 
