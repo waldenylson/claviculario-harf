@@ -12,12 +12,12 @@ class EfetivoRepository implements EfetivoRepositoryContract
 
     protected string $modelClass = HarfStaff::class;
 
-    public function listUsers(): \Illuminate\Database\Eloquent\Collection
+    public function listStaff(): \Illuminate\Database\Eloquent\Collection
     {
         return $this->modelClass::all();
     }
 
-    public function findSingleUser($id)
+    public function findSingleStaff($id)
     {
         return $this->modelClass::findOrFail($id);
     }
@@ -40,12 +40,6 @@ class EfetivoRepository implements EfetivoRepositoryContract
             $validatedData['electronic_signature'] = Hash::make($request->electronic_signature);
         } else {
             unset($validatedData['electronic_signature']);
-        }
-
-        if ($request->filled('password')) {
-            $validatedData['password'] = Hash::make($request->password);
-        } else {
-            unset($validatedData['password']);
         }
 
         return $this->modelClass::findOrFail($id)->update($validatedData);

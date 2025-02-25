@@ -7,7 +7,7 @@
     </div>
     {{ html()->form('POST', '/efetivo/salvar')->class('g-3 needs-validation')->novalidate()->open() }}
 
-        @include('users.partials.form')
+        @include('efetivo.partials.form')
 
     {{ html()->form()->close() }}
   </div>

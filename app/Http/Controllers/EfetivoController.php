@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Repositories\Users\EfetivoRepository;
+use App\Http\Repositories\Efetivo\EfetivoRepository;
 use App\Http\Requests\StoreEfetivoPostRequest;
 use Illuminate\Auth\Events\Registered;
 
@@ -20,9 +20,9 @@ class EfetivoController extends Controller
      */
     public function index()
     {
-        $usuarios = $this->efetivoRepository->listUsers();
+        $efetivo = $this->efetivoRepository->listUsers();
 
-        return view('users.index')->with(compact('usuarios'));
+        return view('efetivo.index')->with(compact('efetivo'));
     }
 
     /**
@@ -32,7 +32,7 @@ class EfetivoController extends Controller
     {
         //return redirect()->back()->with('error', 'Erro ao Tentar Inserir o Registro!');
 
-        return view('users.new');
+        return view('efetivo.new');
     }
 
     /**
@@ -40,13 +40,9 @@ class EfetivoController extends Controller
      */
     public function store(StoreEfetivoPostRequest $request)
     {
-        $this->checkEmailFAB($request);
-
         $result = $this->efetivoRepository->store($request);
 
         if ($result) {
-            event(new Registered($result));
-
             return redirect()->back()->with('message', 'Registro Inserido com Sucesso!');
         }
 
@@ -66,9 +62,9 @@ class EfetivoController extends Controller
      */
     public function edit($id)
     {
-        $user = $this->efetivoRepository->edit($id);
+        $staff = $this->efetivoRepository->edit($id);
 
-        return view('users.edit', compact('user'));
+        return view('efetivo.edit', compact('staff'));
     }
 
     /**
@@ -76,8 +72,6 @@ class EfetivoController extends Controller
      */
     public function update(StoreEfetivoPostRequest $request, $id)
     {
-        $this->checkEmailFAB($request);
-
         $result = $this->efetivoRepository->persistUpdate($request, $id);
 
         if ($result) {
@@ -102,14 +96,5 @@ class EfetivoController extends Controller
         }
 
         return redirect()->back()->with('error', 'Erro ao Tentar Remover o Registro!');
-    }
-
-    private function checkEmailFAB($request)
-    {
-        $dominio = explode("@", $request['email']);
-
-        if ($dominio[1] !== "fab.mil.br") {
-            return redirect()->back()->withErrors("E-Mail FAB Obrigatório!")->withInput();
-        }
     }
 }
