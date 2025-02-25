@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Repositories\Users;
+namespace App\Http\Repositories\Efetivo;
 
 use App\Http\Requests\StoreEfetivoPostRequest;
 use App\Models\HarfStaff;
