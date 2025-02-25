@@ -38,7 +38,7 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/', [UserController::class, 'index']);
         Route::get('/novo', [UserController::class, 'create']);
-        Route::post('/salvar', [UserController::class, 'store']);
+        Route::post('/salvar', [UserController::class, 'store'])->name('usuarios.store');;
         Route::get('/editar/{id}', [UserController::class, 'edit'])->name('usuarios.edit');
         Route::put('/atualizar/{id}', [UserController::class, 'update'])->name('usuarios.update');
         Route::delete('/excluir/{id}', [UserController::class, 'destroy'])->name('usuarios.destroy');
@@ -48,7 +48,7 @@ Route::middleware('auth')->group(function () {
 
         Route::get('/', [EfetivoController::class, 'index']);
         Route::get('/novo', [EfetivoController::class, 'create']);
-        Route::post('/salvar', [EfetivoController::class, 'store']);
+        Route::post('/salvar', [EfetivoController::class, 'store'])->name('efetivo.store');;
         Route::get('/editar/{id}', [EfetivoController::class, 'edit'])->name('efetivo.edit');
         Route::put('/atualizar/{id}', [EfetivoController::class, 'update'])->name('efetivo.update');
         Route::delete('/excluir/{id}', [EfetivoController::class, 'destroy'])->name('efetivo.destroy');

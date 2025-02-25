@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Repositories\Efetivo\EfetivoRepository;
 use App\Http\Requests\StoreEfetivoPostRequest;
-use Illuminate\Auth\Events\Registered;
+use App\Models\Department;
 
 class EfetivoController extends Controller
 {
@@ -20,7 +20,7 @@ class EfetivoController extends Controller
      */
     public function index()
     {
-        $efetivo = $this->efetivoRepository->listUsers();
+        $efetivo = $this->efetivoRepository->listStaff();
 
         return view('efetivo.index')->with(compact('efetivo'));
     }
@@ -30,9 +30,9 @@ class EfetivoController extends Controller
      */
     public function create()
     {
-        //return redirect()->back()->with('error', 'Erro ao Tentar Inserir o Registro!');
+        $departments = Department::all();
 
-        return view('efetivo.new');
+        return view('efetivo.new')->with(compact('departments'));
     }
 
     /**
