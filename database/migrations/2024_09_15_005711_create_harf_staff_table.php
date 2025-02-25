@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('harf_staff', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('departament_id')->constrained();
             $table->string('name')->nullable(false);
             $table->string('email')->unique()->nullable();
             $table->string('phone')->unique()->nullable(false);
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password')->nullable(false);
+            $table->string('extension')->unique()->nullable();
+            $table->bool('military')->nullable(false);
             $table->integer('electronic_signature')->nullable(false);
-            $table->rememberToken();
             $table->timestamps();
         });
     }
