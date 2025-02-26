@@ -6,9 +6,8 @@
         <h1 class="card-title">Criar Novo Usuário do Efetivo</h1>
     </div>
     {{ html()->form('POST', '/efetivo/salvar')->class('g-3 needs-validation')->novalidate()->open() }}
-
+        @csrf
         @include('efetivo.partials.form')
-
     {{ html()->form()->close() }}
   </div>
 @stop
