@@ -53,8 +53,6 @@ Route::middleware('auth')->group(function () {
         Route::put('/atualizar/{id}', [EfetivoController::class, 'update'])->name('efetivo.update');
         Route::delete('/excluir/{id}', [EfetivoController::class, 'destroy'])->name('efetivo.destroy');
     });
-
-
 });
 
 
@@ -77,4 +75,4 @@ Route::get('/email/verify', function () {
 })->middleware('auth')->name('verification.notice');
 
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
