@@ -7,6 +7,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Support\Facades\DB;
 use JeroenNoten\LaravelAdminLte\Events\BuildingMenu;
+use Illuminate\Support\Facades\Blade;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -37,7 +38,7 @@ class AppServiceProvider extends ServiceProvider
    */
   public function boot(Dispatcher $events): void
   {
-
+    Blade::anonymousComponentNamespace('AppComponents', 'AppComponents');
 
     $events->listen(BuildingMenu::class, function (BuildingMenu $event) {
       $event->menu->addAfter('claviculario', [

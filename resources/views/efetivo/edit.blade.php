@@ -5,10 +5,9 @@
     <div class="card-header">
       <h1 class="card-title">Editar Usuário do Efetivo</h1>
     </div>
-    {{ html()->form('PUT', route('efetivo.update', $user->id))->class('g-3 needs-validation')->novalidate()->open() }}
-
-    @include('efetivo.partials.form')
-
+    {{ html()->form('PUT', route('efetivo.update', $staff->id))->class('g-3 needs-validation')->novalidate()->open() }}
+      @csrf
+      @include('efetivo.partials.form', ['featureInstance' => $staff])
     {{ html()->form()->close() }}
   </div>
 @stop
