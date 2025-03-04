@@ -63,8 +63,11 @@ class EfetivoController extends Controller
   public function edit($id)
   {
     $staff = $this->efetivoRepository->edit($id);
+    $departments = Department::all();
 
-    return view('efetivo.edit', compact('staff'));
+    return view('efetivo.edit')
+      ->with(compact('departments'))
+      ->with(compact('staff'));
   }
 
   /**

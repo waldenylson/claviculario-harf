@@ -99,7 +99,7 @@
             <span class="input-group-text">
               <i class="bi bi-pen"></i>
             </span>
-            <input type="text" class="form-control" id="electronic_signature" name="electronic_signature"
+            <input type="password" class="form-control" id="electronic_signature" name="electronic_signature"
               {{ isset($user) ? '' : 'required' }} />
           </div>
         </div>

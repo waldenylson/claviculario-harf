@@ -22,8 +22,6 @@ class EfetivoRepository implements EfetivoRepositoryContract
 
   public function store(StoreEfetivoPostRequest $request)
   {
-    dd($request);
-
     return $this->modelClass::create($request->all());
   }
 
