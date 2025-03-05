@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Department;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreDepartmentRequest;
-use App\Http\Requests\UpdateDepartmentRequest;
 
 class DepartmentController extends Controller
 {
@@ -14,7 +12,8 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        //
+    $departments = Department::all();
+    return view('departments.index', compact('departments'));
     }
 
     /**
@@ -22,7 +21,7 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        //
+    return view('departments.create');
     }
 
     /**
@@ -30,7 +29,14 @@ class DepartmentController extends Controller
      */
     public function store(StoreDepartmentRequest $request)
     {
-        //
+    $request->validate([
+      'name' => 'required|string|max:255',
+      'comments' => 'nullable|string',
+    ]);
+
+    Department::create($request->all());
+
+    return redirect()->route('departments.index')->with('success', 'Department created successfully.');
     }
 
     /**
@@ -38,7 +44,7 @@ class DepartmentController extends Controller
      */
     public function show(Department $department)
     {
-        //
+    return view('departments.show', compact('department'));
     }
 
     /**
@@ -46,15 +52,22 @@ class DepartmentController extends Controller
      */
     public function edit(Department $department)
     {
-        //
+    return view('departments.edit', compact('department'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateDepartmentRequest $request, Department $department)
+  public function update(StoreDepartmentRequest $request, Department $department)
     {
-        //
+    $request->validate([
+      'name' => 'required|string|max:255',
+      'comments' => 'nullable|string',
+    ]);
+
+    $department->update($request->all());
+
+    return redirect()->route('departments.index')->with('success', 'Department updated successfully.');
     }
 
     /**
@@ -62,6 +75,8 @@ class DepartmentController extends Controller
      */
     public function destroy(Department $department)
     {
-        //
+    $department->delete();
+
+    return redirect()->route('departments.index')->with('success', 'Department deleted successfully.');
     }
 }

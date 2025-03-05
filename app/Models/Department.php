@@ -7,9 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Department extends Model
 {
-  protected $table = 'departments';
-
   use HasFactory;
+
+  protected $guarded = [];
+
+  protected $table = 'departments';
 
   /**
    * Get the staff members for the department.
