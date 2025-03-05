@@ -36,7 +36,7 @@ class StoreEfetivoPostRequest extends FormRequest
       $rules['electronic_signature'] = 'required|min:6|max:6|regex:/^\d+$/';
     } else if ($this->isMethod('put') || $this->isMethod('patch')) {
       // Regras para atualização
-      $rules['electronic_signature'] = 'nullable';
+      $rules['electronic_signature'] = 'nullable|min:6|max:6|regex:/^\d+$/';
     }
 
     return $rules;
