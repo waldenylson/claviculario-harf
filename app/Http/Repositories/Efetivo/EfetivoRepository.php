@@ -12,7 +12,7 @@ class EfetivoRepository implements EfetivoRepositoryContract
 
   public function listStaff(): \Illuminate\Database\Eloquent\Collection
   {
-    return $this->modelClass::all();
+    return $this->modelClass::all()->load('department');
   }
 
   public function findSingleStaff($id)

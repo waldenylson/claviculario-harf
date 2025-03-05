@@ -16,8 +16,8 @@ return new class extends Migration
       $table->foreignId('department_id')->constrained();
       $table->string('name')->nullable(false);
       $table->string('email')->unique()->nullable();
-      $table->string('phone')->unique()->nullable(false);
-      $table->string('extension')->unique()->nullable();
+      $table->string('phone')->nullable(false);
+      $table->string('extension')->nullable();
       $table->boolean('military')->nullable(false);
       $table->integer('electronic_signature')->nullable(false);
       $table->timestamps();

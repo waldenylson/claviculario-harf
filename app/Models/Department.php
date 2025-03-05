@@ -7,9 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Department extends Model
 {
-    protected $table = 'departments';
+  protected $table = 'departments';
 
-    use HasFactory;
+  use HasFactory;
 
-
+  /**
+   * Get the staff members for the department.
+   */
+  public function harfStaff()
+  {
+    return $this->hasMany(HarfStaff::class);
+  }
 }

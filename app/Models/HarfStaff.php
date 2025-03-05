@@ -7,9 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class HarfStaff extends Model
 {
-    use HasFactory;
-
-  protected $guarded = ['_token'];
+  use HasFactory;
 
   protected $table = 'harf_staff';
+
+  protected $guarded = [];
+
+  /**
+   * Get the department that the staff belongs to.
+   */
+  public function department()
+  {
+    return $this->belongsTo(Department::class);
+  }
 }
