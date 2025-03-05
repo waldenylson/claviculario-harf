@@ -3,7 +3,7 @@
 @extends('layouts.app')
 @section('content_body')
 
-  <div class="card direct-chat" style="width: 90%">
+  <div class="card direct-chat" style="width: 98%">
     <div class="card-header">
       <h1 class="card-title">Listagem de Efetivos</h1>
     </div>

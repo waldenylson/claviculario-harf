@@ -29,5 +29,6 @@ class DatabaseSeeder extends Seeder
     ]);
 
     \App\Models\Department::factory(10)->create();
+    \App\Models\HarfStaff::factory(10)->create();
   }
 }
