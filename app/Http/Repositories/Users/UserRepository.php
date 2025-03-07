@@ -73,18 +73,8 @@ class UserRepository implements UserRepositoryContract
     return $users;
   }
 
-  public function index()
+  public function show($id)
   {
-    // TODO: Implement index() method.
-  }
-
-  public function create()
-  {
-    // TODO: Implement create() method.
-  }
-
-  public function show(User $user)
-  {
-    // TODO: Implement show() method.
+    return $this->modelClass::findOrFail($id);
   }
 }

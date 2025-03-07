@@ -3,6 +3,7 @@
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EfetivoController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\KeyController;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
@@ -62,6 +63,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/editar/{id}', [DepartmentController::class, 'edit'])->name('departments.edit');
     Route::put('/atualizar/{id}', [DepartmentController::class, 'update'])->name('departments.update');
     Route::delete('/excluir/{id}', [DepartmentController::class, 'destroy'])->name('departments.destroy');
+  });
+
+  Route::prefix('chaves')->group(function () {
+    Route::get('/', [KeyController::class, 'index'])->name('keys.index');
+    Route::get('/novo', [KeyController::class, 'create'])->name('keys.create');
+    Route::post('/salvar', [KeyController::class, 'store'])->name('keys.store');
+    Route::get('/editar/{id}', [KeyController::class, 'edit'])->name('keys.edit');
+    Route::put('/atualizar/{id}', [KeyController::class, 'update'])->name('keys.update');
+    Route::delete('/excluir/{id}', [KeyController::class, 'destroy'])->name('keys.destroy');
   });
 });
 

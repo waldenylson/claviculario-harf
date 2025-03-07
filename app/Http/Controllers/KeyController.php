@@ -3,65 +3,57 @@
 namespace App\Http\Controllers;
 
 use App\Models\Key;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreKeyRequest;
 use App\Http\Requests\UpdateKeyRequest;
+use App\Http\Repositories\Key\KeyRepository;
 
 class KeyController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+  protected $repository;
+
+  public function __construct(KeyRepository $repository)
+  {
+    $this->repository = $repository;
+  }
+
+  public function index()
+    {
+    $keys = $this->repository->listKeys();
+    return view('keys.index', compact('keys'));
+    }
+
+  public function create()
+    {
+    $departments = Department::all();
+    return view('keys.create', compact('departments'));
+    }
+
+  public function store(StoreKeyRequest $request)
+    {
+    $this->repository->store($request);
+    return redirect()->route('keys.index')->with('success', 'Chave criada com sucesso.');
+    }
+
+  public function show(Key $key)
     {
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+  public function edit(Key $key)
     {
-        //
+    $departments = Department::all();
+    return view('keys.edit', compact('key', 'departments'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreKeyRequest $request)
+  public function update(UpdateKeyRequest $request, Key $key)
     {
-        //
+    $this->repository->update($request, $key);
+    return redirect()->route('keys.index')->with('success', 'Chave atualizada com sucesso.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Key $key)
+  public function destroy(Key $key)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Key $key)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateKeyRequest $request, Key $key)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Key $key)
-    {
-        //
+    $this->repository->destroy($key);
+    return redirect()->route('keys.index')->with('success', 'Chave excluída com sucesso.');
     }
 }

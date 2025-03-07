@@ -7,12 +7,12 @@ use App\Models\User;
 
 interface UserRepositoryContract
 {
-    public function index();
-    public function create();
-    public function show(User $user);
-    public function store(StoreUsersPostRequest $request);
-    public function edit(User $user);
-    public function persistUpdate(StoreUsersPostRequest $request, User $user);
-    public function destroy(User $user);
-    public function getAllUsersForSelect();
+  public function listUsers($paginateResult = false);
+  public function findSingleUser($id);
+  public function show(int $id);
+  public function store(StoreUsersPostRequest $request);
+  public function edit(int $id);
+  public function persistUpdate(StoreUsersPostRequest $request, int $id);
+  public function destroy(int $id);
+  public function getAllUsersForSelect();
 }

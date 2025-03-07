@@ -9,10 +9,10 @@ interface DepartmentsRepositoryContract
 {
   public function index();
   public function create();
-  public function show(Department $department);
+  public function show(int $id);
   public function store(StoreDepartmentPostRequest $request);
-  public function edit(Department $department);
-  public function persistUpdate(StoreDepartmentPostRequest $request, Department $department);
-  public function destroy(Department $department);
+  public function edit(int $id);
+  public function persistUpdate(StoreDepartmentPostRequest $request, int $id);
+  public function destroy(int $id);
   public function getAllDepartmentsForSelect();
 }
