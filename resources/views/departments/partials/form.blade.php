@@ -4,8 +4,8 @@
 
 <x-AppComponents::form-template :featureInstance="$editObjectInstance">
   <div class="row">
-    <div class="col-md-4">
-      <label for="name" class="form-label label">Nome do Departamento</label>
+    <div class="col-md-6">
+      <label for="name" class="form-label label">Nome da Seção</label>
       <div class="input-group">
         <span class="input-group-text">
           <i class="bi bi-building"></i>
@@ -14,8 +14,10 @@
           value="{{ old('name', $editObjectInstance->name ?? '') }}" required placeholder="Nome do Departamento" />
       </div>
     </div>
-    <div class="col-md-8">
-      <label for="comments" class="form-label label">Comentários</label>
+    </div><br />
+  <div class="row">
+    <div class="col-md-6">
+      <label for="comments" class="form-label label">Observações</label>
       <div class="input-group">
         <span class="input-group-text">
           <i class="bi bi-chat-text"></i>

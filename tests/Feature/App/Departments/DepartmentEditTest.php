@@ -37,7 +37,7 @@ class DepartmentEditTest extends TestCase
 
     $response = $this->actingAs($user)->get(route('departments.edit', $department->id));
     $response->assertStatus(200);
-    $response->assertSee('Edit Department');
+    $response->assertSee('Editar Seção');
   }
 
   /**

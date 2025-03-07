@@ -28,7 +28,7 @@ class DepartmentCreationTest extends TestCase
 
     $response = $this->actingAs($user)->get(route('departments.create'));
     $response->assertStatus(200);
-    $response->assertSee('Create Department');
+    $response->assertSee('Cadastrar Nova Seção');
   }
 
   /**

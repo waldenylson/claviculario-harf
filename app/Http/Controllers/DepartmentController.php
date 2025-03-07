@@ -2,81 +2,99 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Repositories\Departments\DepartmentsRepository;
+use App\Http\Requests\StoreDepartmentPostRequest;
 use App\Models\Department;
-use App\Http\Requests\StoreDepartmentRequest;
 
 class DepartmentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
+  private DepartmentsRepository $departmentsRepository;
+
+  public function __construct(DepartmentsRepository $repository)
+  {
+    $this->departmentsRepository = $repository;
+  }
+
+  /**
+   * Display a listing of the resource.
+   */
+  public function index()
+  {
     $departments = Department::all();
+
     return view('departments.index', compact('departments'));
+  }
+
+  /**
+   * Show the form for creating a new resource.
+   */
+  public function create()
+  {
+    return view('departments.new');
+  }
+
+  /**
+   * Store a newly created resource in storage.
+   */
+  public function store(StoreDepartmentPostRequest $request)
+  {
+    $result = $this->departmentsRepository->store($request);
+
+    if ($result) {
+      return redirect()->back()->with('message', 'Registro Inserido com Sucesso!');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-    return view('departments.create');
+    return redirect()->back()->with('error', 'Erro ao Tentar Inserir o Registro!');
+  }
+
+  /**
+   * Display the specified resource.
+   */
+  public function show(int $id) {}
+
+  /**
+   * Show the form for editing the specified resource.
+   */
+  public function edit(int $id)
+  {
+    $department = $this->departmentsRepository->edit($id);
+
+    return view('departments.edit')->with(compact('department'));
+  }
+
+  /**
+   * Update the specified resource in storage.
+   */
+  public function update(StoreDepartmentPostRequest $request, int $id)
+  {
+    $result = $this->departmentsRepository->persistUpdate($request, $id);
+
+    if ($result) {
+      return redirect()->back()->with('message', 'Registro Alterado com Sucesso!');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreDepartmentRequest $request)
-    {
-    $request->validate([
-      'name' => 'required|string|max:255',
-      'comments' => 'nullable|string',
-    ]);
+    return redirect()->back()->with('error', 'Erro ao Tentar Alterar o Registro!');
+  }
 
-    Department::create($request->all());
+  /**
+   * Remove the specified resource from storage.
+   */
+  public function destroy(int $id)
+  {
+    $department = $this->departmentsRepository->findSingleDepartment($id);
 
-    return redirect()->route('departments.index')->with('success', 'Department created successfully.');
+    // Verifica se o departamento tem efetivos relacionados
+    if ($department->harfStaff()->count() > 0) {
+      return redirect()->back()->with('error', 'Seção não pode ser excluída pois há Efetivos relacionados!');
+      return redirect()->route('departments.index')->with('error', '');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Department $department)
-    {
-    return view('departments.show', compact('department'));
+    $result = $this->departmentsRepository->destroy($id);
+
+    if ($result) {
+      return redirect()->back()->with('message', 'Registro Removido com Sucesso!');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Department $department)
-    {
-    return view('departments.edit', compact('department'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-  public function update(StoreDepartmentRequest $request, Department $department)
-    {
-    $request->validate([
-      'name' => 'required|string|max:255',
-      'comments' => 'nullable|string',
-    ]);
-
-    $department->update($request->all());
-
-    return redirect()->route('departments.index')->with('success', 'Department updated successfully.');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Department $department)
-    {
-    $department->delete();
-
-    return redirect()->route('departments.index')->with('success', 'Department deleted successfully.');
-    }
+    return redirect()->back()->with('error', 'Erro ao Tentar Remover o Registro!');
+  }
 }

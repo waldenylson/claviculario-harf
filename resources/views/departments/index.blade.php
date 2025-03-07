@@ -10,7 +10,6 @@
     <div class="card-body bg-gray-500">
       <div class="form-group well">
         <div class="container py-12">
-          <a href="{{ route('departments.create') }}" class="btn btn-primary mb-3">Criar Novo Departamento</a>
           <table class="table table-hover table-striped align-middle">
             <thead class="table-dark">
               <tr>
@@ -67,7 +66,7 @@
 
           Swal.fire({
             title: 'Confirma a exclusão?',
-            text: `Deseja realmente excluir o departamento "${departmentName}"? Esta ação não pode ser desfeita!`,
+            text: `Deseja realmente excluir a seção "${departmentName}"? Esta ação não pode ser desfeita!`,
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#d33',

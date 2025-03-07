@@ -22,8 +22,8 @@ class StoreDepartmentPostRequest extends FormRequest
   public function rules(): array
   {
     $rules = [
-      'name' => 'required|string|max:255',
-      'comments' => 'nullable|string',
+      'name' => 'required|min:4|max:255',
+      'comments' => 'required|string',
     ];
 
     return $rules;
@@ -32,10 +32,11 @@ class StoreDepartmentPostRequest extends FormRequest
   public function messages()
   {
     return [
-      'name.required' => 'Nome do Departamento é Obrigatório!',
-      'name.string' => 'Nome do Departamento deve ser um texto!',
+      'name.required' => 'Nome da Seção é Obrigatório!',
+      'name.min' => 'Nome da Seção deve conter pelo menos :min caracteres!',
       'name.max' => 'Nome do Departamento não pode ter mais que :max caracteres!',
-      'comments.string' => 'Comentários devem ser um texto!',
+      'comments.required' => 'Observações são Obrigatórias!',
+      'comments.string' => 'Observações devem ser um texto!',
     ];
   }
 }
