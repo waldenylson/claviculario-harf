@@ -5,7 +5,7 @@
 
   <div class="card direct-chat" style="width: 98%">
     <div class="card-header">
-      <h1 class="card-title">Listagem de Departamentos</h1>
+      <h1 class="card-title">Listagem de Seções</h1>
     </div>
     <div class="card-body bg-gray-500">
       <div class="form-group well">
@@ -38,11 +38,15 @@
                 </tr>
               @empty
                 <tr>
-                  <td colspan="4" class="text-center text-muted">Nenhum departamento encontrado.</td>
+                  <td colspan="4" class="text-center text-muted">Nenhum Seção encontrada.</td>
                 </tr>
               @endforelse
             </tbody>
           </table>
+          <!-- Links de Paginação -->
+          <div class="d-flex justify-content-center">
+            {{ $departments->links('vendor.pagination.bootstrap-5') }}
+          </div>
           <!-- Formulário de Exclusão -->
           <form id="form-delete" method="POST" style="display: none;">
             @csrf

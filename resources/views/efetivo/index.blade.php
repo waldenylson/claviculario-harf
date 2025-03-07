@@ -51,6 +51,10 @@
               @endforelse
             </tbody>
           </table>
+          <!-- Links de Paginação -->
+          <div class="d-flex justify-content-center">
+            {{ $departments->links('vendor.pagination.bootstrap-5') }}
+          </div>
           <!-- Formulário de Exclusão -->
           <form id="form-delete" method="POST" style="display: none;">
             @csrf

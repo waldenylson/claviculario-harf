@@ -5,7 +5,7 @@
 
   <div class="card  direct-chat" style="width: 90%">
     <div class="card-header">
-<h1 class="card-title">Listagem de Usuários</h1>
+      <h1 class="card-title">Listagem de Usuários</h1>
     </div>
     <div class="card-body bg-gray-500">
       <div class="form-group well">
@@ -51,6 +51,10 @@
               @endforelse
             </tbody>
           </table>
+          <!-- Links de Paginação -->
+          <div class="d-flex justify-content-center">
+            {{ $departments->links('vendor.pagination.bootstrap-5') }}
+          </div>
           <!-- Formulário de Exclusão -->
           <form id="form-delete" method="POST" style="display: none;">
             @csrf
@@ -92,7 +96,7 @@
     });
   </script>
 
-<style>
+  <style>
     .label {
       margin-bottom: 0px;
       margin-left: 5px;
