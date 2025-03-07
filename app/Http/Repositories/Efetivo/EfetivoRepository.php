@@ -10,9 +10,13 @@ class EfetivoRepository implements EfetivoRepositoryContract
 {
   protected string $modelClass = HarfStaff::class;
 
-  public function listStaff(): \Illuminate\Database\Eloquent\Collection
+  public function listStaff($paginateResult = true)
   {
-    return $this->modelClass::all()->load('department');
+    if ($paginateResult) {
+      return $this->modelClass::with('department')->paginate(10);
+    }
+
+    return $this->modelClass::with('department')->get();
   }
 
   public function findSingleStaff($id)

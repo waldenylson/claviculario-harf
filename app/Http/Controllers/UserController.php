@@ -20,7 +20,7 @@ class UserController extends Controller
    */
   public function index()
   {
-    $usuarios = $this->usersRepository->listUsers();
+    $usuarios = $this->usersRepository->listUsers(true);
 
     return view('users.index')->with(compact('usuarios'));
   }

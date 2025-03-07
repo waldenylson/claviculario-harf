@@ -73,7 +73,7 @@
           <i class="fas fa-phone "></i>
         </span>
         <input type="text" class="form-control" id="extension" name="extension"
-          value="{{ old('extension', $editObjectInstance->extension ?? '') }}" placeholder="9999" required />
+          value="{{ old('extension', $editObjectInstance->extension ?? '') }}" placeholder="9999" />
       </div>
     </div>
     <div class="col-md-4">

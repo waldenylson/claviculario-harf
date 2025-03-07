@@ -11,8 +11,12 @@ class UserRepository implements UserRepositoryContract
   protected string $modelClass = User::class;
 
 
-  public function listUsers(): \Illuminate\Database\Eloquent\Collection
+  public function listUsers($paginateResult = false)
   {
+    if ($paginateResult) {
+      return $this->modelClass::paginate(10);
+    }
+
     return $this->modelClass::all();
   }
 

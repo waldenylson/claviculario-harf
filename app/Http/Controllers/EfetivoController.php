@@ -20,7 +20,7 @@ class EfetivoController extends Controller
    */
   public function index()
   {
-    $efetivo = $this->efetivoRepository->listStaff();
+    $efetivo = $this->efetivoRepository->listStaff(true);
 
     return view('efetivo.index')->with(compact('efetivo'));
   }
