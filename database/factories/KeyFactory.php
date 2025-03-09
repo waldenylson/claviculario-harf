@@ -2,22 +2,23 @@
 
 namespace Database\Factories;
 
+use App\Models\Key;
+use App\Models\Department;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Key>
- */
 class KeyFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
-    {
-        return [
-            //
-        ];
-    }
+  protected $model = Key::class;
+
+  public function definition()
+  {
+    return [
+      'department_id' => Department::factory(),
+      'number' => $this->faker->randomNumber(),
+      'internal_hallway' => $this->faker->boolean(),
+      'eps' => $this->faker->boolean(),
+      'epms' => $this->faker->boolean(),
+      'comments' => $this->faker->sentence(),
+    ];
+  }
 }

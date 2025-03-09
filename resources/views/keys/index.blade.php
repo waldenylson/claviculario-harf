@@ -8,7 +8,7 @@
     <div class="card-body bg-gray-500">
       <div class="form-group well">
         <div class="container py-12">
-          <table class="table table-hover table-striped align-middle">
+          <table class="table table-hover table-striped align-middle" style="width: 70vw;margin-left: -100px;">
             <thead class="table-dark">
               <tr>
                 <th>#</th>
@@ -24,7 +24,7 @@
             <tbody>
               @forelse ($keys as $key)
                 <tr>
-                  <td>{{ $loop->iteration }}</td>
+                  <td>{{ $keys->firstItem() + $loop->index }}</td>
                   <td>{{ $key->department->name ?? 'Sem Departamento' }}</td>
                   <td>{{ $key->number }}</td>
                   <td>{{ $key->internal_hallway ? 'Sim' : 'Não' }}</td>

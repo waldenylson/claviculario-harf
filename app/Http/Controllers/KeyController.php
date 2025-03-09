@@ -2,58 +2,77 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Key;
-use App\Http\Requests\StoreKeyRequest;
-use App\Http\Requests\UpdateKeyRequest;
-use App\Http\Repositories\Key\KeyRepository;
+use App\Http\Repositories\Departments\DepartmentsRepository;
+use App\Http\Repositories\Keys\KeyRepository;
+use App\Http\Requests\StoreKeyPostRequest;
+use App\Models\Department;
 
 class KeyController extends Controller
 {
-  protected $repository;
+  private KeyRepository $keysRepository;
+  private DepartmentsRepository $departmentsRepository;
 
-  public function __construct(KeyRepository $repository)
+  public function __construct(KeyRepository $keysRepository, DepartmentsRepository $departmentsRepository)
   {
-    $this->repository = $repository;
+    $this->keysRepository = $keysRepository;
+    $this->departmentsRepository = $departmentsRepository;
   }
 
   public function index()
-    {
-    $keys = $this->repository->listKeys();
+  {
+    $keys = $this->keysRepository->listKeys(true);
+
     return view('keys.index', compact('keys'));
-    }
+  }
 
   public function create()
-    {
+  {
     $departments = Department::all();
-    return view('keys.create', compact('departments'));
+    return view('keys.new', compact('departments'));
+  }
+
+  public function store(StoreKeyPostRequest $request)
+  {
+    $result = $this->keysRepository->store($request);
+
+    if ($result) {
+      return redirect()->back()->with('message', 'Registro Inserido com Sucesso!');
     }
 
-  public function store(StoreKeyRequest $request)
-    {
-    $this->repository->store($request);
-    return redirect()->route('keys.index')->with('success', 'Chave criada com sucesso.');
-    }
+    return redirect()->back()->with('error', 'Erro ao Tentar Inserir o Registro!');
+  }
 
-  public function show(Key $key)
-    {
-        //
-    }
+  public function show(int $id) {}
 
-  public function edit(Key $key)
-    {
+  public function edit(int $id)
+  {
+    $key = $this->keysRepository->edit($id);
     $departments = Department::all();
+
+    $department = $this->departmentsRepository->findSingleDepartment($id);
+
     return view('keys.edit', compact('key', 'departments'));
+  }
+
+  public function update(StoreKeyPostRequest $request, int $id)
+  {
+    $result = $this->keysRepository->persistUpdate($request, $id);
+
+    if ($result) {
+      return redirect()->back()->with('message', 'Registro Alterado com Sucesso!');
     }
 
-  public function update(UpdateKeyRequest $request, Key $key)
-    {
-    $this->repository->update($request, $key);
-    return redirect()->route('keys.index')->with('success', 'Chave atualizada com sucesso.');
+    return redirect()->back()->with('error', 'Erro ao Tentar Alterar o Registro!');
+  }
+
+  public function destroy(int $id)
+  {
+    $result = $this->keysRepository->destroy($id);
+
+    if ($result) {
+      return redirect()->back()->with('message', 'Registro Removido com Sucesso!');
     }
 
-  public function destroy(Key $key)
-    {
-    $this->repository->destroy($key);
-    return redirect()->route('keys.index')->with('success', 'Chave excluída com sucesso.');
-    }
+    return redirect()->back()->with('error', 'Erro ao Tentar Remover o Registro!');
+  }
 }

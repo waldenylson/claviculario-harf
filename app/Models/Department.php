@@ -20,4 +20,12 @@ class Department extends Model
   {
     return $this->hasMany(HarfStaff::class);
   }
+
+  /**
+   * Get the keys for the department.
+   */
+  public function keys()
+  {
+    return $this->hasMany(Key::class);
+  }
 }

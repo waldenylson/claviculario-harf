@@ -40,30 +40,22 @@ class DepartmentsRepository implements DepartmentsRepositoryContract
     return $this->modelClass::findOrFail($id)->update($validatedData);
   }
 
-  public function destroy($id)
+  public function destroy(int $id)
   {
     $department = $this->modelClass::findOrFail($id);
 
     return $department->delete();
   }
 
-  public function index()
-  {
-    // Implement the index method
+  public function index() {
   }
 
-  public function create()
-  {
-    // Implement the create method
+  public function create() {
   }
 
-  public function show($id)
-  {
-    // Implement the show method
+  public function show($id) {
   }
 
-  public function getAllDepartmentsForSelect()
-  {
-    // Implement the getAllDepartmentsForSelect method
+  public function getAllDepartmentsForSelect() {
   }
 }

@@ -1,15 +1,13 @@
 @extends('layouts.app')
 @section('content_body')
-  <div class="card direct-chat" style="width: 98%">
+  @include('support.flash-message')
+  <div class="card  direct-chat" style="width: 90%">
     <div class="card-header">
-      <h1 class="card-title">Editar Chave</h1>
+      <h1 class="card-title">Editar Chave Cadastrada</h1>
     </div>
-    <div class="card-body bg-gray-500">
-      @include('keys.partials.form', [
-          'action' => route('keys.update', $key->id),
-          'method' => 'PUT',
-          'editObjectInstance' => $key,
-      ])
-    </div>
+    {{ html()->form('PUT', route('keys.update', $key->id))->class('g-3 needs-validation')->novalidate()->open() }}
+      @csrf
+      @include('keys.partials.form', ['featureInstance' => $key])
+    {{ html()->form()->close() }}
   </div>
 @stop

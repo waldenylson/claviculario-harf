@@ -3,7 +3,6 @@
 namespace App\Http\Repositories\Keys;
 
 use App\Http\Requests\StoreKeyPostRequest;
-use App\Models\Key;
 
 interface KeyRepositoryContract
 {
@@ -14,5 +13,7 @@ interface KeyRepositoryContract
   public function edit(int $id);
   public function persistUpdate(StoreKeyPostRequest $request, int $id);
   public function destroy(int $id);
+  public function listKeys($paginateResult = false);
+  public function findSingleKey(int $id);
   public function getAllKeysForSelect();
 }

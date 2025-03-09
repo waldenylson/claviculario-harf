@@ -3,16 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Http\Repositories\Departments\DepartmentsRepository;
+use App\Http\Repositories\Keys\KeyRepository;
 use App\Http\Requests\StoreDepartmentPostRequest;
-use App\Models\Department;
 
 class DepartmentController extends Controller
 {
   private DepartmentsRepository $departmentsRepository;
+  private KeyRepository $keysRepository;
 
-  public function __construct(DepartmentsRepository $repository)
+  public function __construct(DepartmentsRepository $repository, KeyRepository $keyRepository)
   {
     $this->departmentsRepository = $repository;
+    $this->keysRepository = $keyRepository;  // Fix this line
   }
 
   /**
@@ -83,10 +85,9 @@ class DepartmentController extends Controller
   {
     $department = $this->departmentsRepository->findSingleDepartment($id);
 
-    // Verifica se o departamento tem efetivos relacionados
-    if ($department->harfStaff()->count() > 0) {
-      return redirect()->back()->with('error', 'Seção não pode ser excluída pois há Efetivos relacionados!');
-      return redirect()->route('departments.index')->with('error', '');
+    // Verifica se o departamento tem efetivos/chaves relacionados
+    if ($department->harfStaff()->count() > 0 || $department->keys()->count() > 0) {
+      return redirect()->back()->with('error', 'Seção não pode ser excluída pois há Efetivos/Chaves relacionados!');
     }
 
     $result = $this->departmentsRepository->destroy($id);

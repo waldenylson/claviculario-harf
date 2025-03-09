@@ -1,33 +1,30 @@
 <?php
 
-namespace App\Http\Repositories\Key;
+namespace App\Http\Repositories\Keys;
 
 use App\Models\Key;
 use App\Http\Requests\StoreKeyPostRequest;
-use App\Http\Requests\UpdateKeyRequest;
 use App\Http\Repositories\Keys\KeyRepositoryContract;
 
 class KeyRepository implements KeyRepositoryContract
 {
   protected string $modelClass = Key::class;
 
-  public function index()
+  public function listKeys($paginateResult = false)
   {
-    return $this->modelClass::all();
+    if ($paginateResult) {
+      return $this->modelClass::with('department')->paginate(10);
+    }
+
+    return $this->modelClass::with('department')->get();
   }
 
-  public function create()
-  {
-    // Return a new instance of the model
-    return new $this->modelClass;
-  }
-
-  public function show($id)
+  public function findSingleKey(int $id)
   {
     return $this->modelClass::findOrFail($id);
   }
 
-  public function edit($id)
+  public function edit(int $id)
   {
     return $this->modelClass::findOrFail($id);
   }
@@ -44,15 +41,6 @@ class KeyRepository implements KeyRepositoryContract
     return $this->modelClass::pluck('name', 'id');
   }
 
-  public function listKeys($paginateResult = true)
-  {
-    if ($paginateResult) {
-      return $this->modelClass::with('department')->paginate(10);
-    }
-
-    return $this->modelClass::with('department')->get();
-  }
-
   public function store(StoreKeyPostRequest $request)
   {
     return $this->modelClass::create($request->all());
@@ -62,4 +50,8 @@ class KeyRepository implements KeyRepositoryContract
   {
     return $this->modelClass::findOrFail($id)->delete();
   }
+
+  public function index() {}
+  public function create() {}
+  public function show(int $id) {}
 }

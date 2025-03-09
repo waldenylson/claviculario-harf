@@ -2,7 +2,6 @@
 
 namespace App\Http\Repositories\Departments;
 
-use App\Models\Department;
 use App\Http\Requests\StoreDepartmentPostRequest;
 
 interface DepartmentsRepositoryContract
@@ -15,4 +14,6 @@ interface DepartmentsRepositoryContract
   public function persistUpdate(StoreDepartmentPostRequest $request, int $id);
   public function destroy(int $id);
   public function getAllDepartmentsForSelect();
+  public function listDepartments($paginateResult = false);
+  public function findSingleDepartment(int $id);
 }
