@@ -40,7 +40,11 @@ class UserController extends Controller
    */
   public function store(StoreUsersPostRequest $request)
   {
-    $this->checkEmailFAB($request);
+    try {
+      $this->checkEmailFAB($request);
+    } catch (\Exception $e) {
+      return redirect()->back()->withErrors($e->getMessage())->withInput();
+    }
 
     $result = $this->usersRepository->store($request);
 
@@ -76,7 +80,11 @@ class UserController extends Controller
    */
   public function update(StoreUsersPostRequest $request, $id)
   {
-    $this->checkEmailFAB($request);
+    try {
+      $this->checkEmailFAB($request);
+    } catch (\Exception $e) {
+      return redirect()->back()->withErrors($e->getMessage())->withInput();
+    }
 
     $result = $this->usersRepository->persistUpdate($request, $id);
 
@@ -109,6 +117,7 @@ class UserController extends Controller
     $dominio = explode("@", $request['email']);
 
     if ($dominio[1] !== "fab.mil.br") {
+      throw new \Exception("E-Mail FAB Obrigatório!");
       return redirect()->back()->withErrors("E-Mail FAB Obrigatório!")->withInput();
     }
   }
