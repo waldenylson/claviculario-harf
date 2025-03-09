@@ -105,7 +105,7 @@
         </div>
       </div> <br />
 
-      <div class="row">
+      {{-- <div class="row">
         <div class="col-sm-10" id="htmlTarget">
           <label for="datetimepicker1Input" class="form-label">Teste Tempus Dominus Date&Time Picker Lib</label>
           <div class="input-group log-event" id="datetimepicker1" data-td-target-input="nearest"
@@ -117,7 +117,7 @@
             </span>
           </div>
         </div>
-      </div>
+      </div> --}}
 
       <hr style="margin-bottom: 5px; background-color:aliceblue" />
       <button class="btn btn-primary" type="submit">
