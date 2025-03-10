@@ -9,6 +9,16 @@ class KeyMovement extends Model
 {
   use HasFactory;
 
+  protected $fillable = [
+    'key_id',
+    'harf_staff_id',
+    'user_id',
+    'movement_type',
+    'out',
+    'return',
+    'comments',
+  ];
+
   public function key()
   {
     return $this->belongsTo(Key::class);

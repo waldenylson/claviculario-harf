@@ -73,6 +73,15 @@ Route::middleware('auth')->group(function () {
     Route::put('/atualizar/{id}', [KeyController::class, 'update'])->name('keys.update');
     Route::delete('/excluir/{id}', [KeyController::class, 'destroy'])->name('keys.destroy');
   });
+
+  Route::prefix('movimentacao-chave')->group(function () {
+    Route::get('/', [KeyMovementController::class, 'index'])->name('key_movements.index');
+    Route::get('/novo', [KeyMovementController::class, 'create'])->name('key_movements.create');
+    Route::post('/salvar', [KeyMovementController::class, 'store'])->name('key_movements.store');
+    Route::get('/editar/{id}', [KeyMovementController::class, 'edit'])->name('key_movements.edit');
+    Route::put('/atualizar/{id}', [KeyMovementController::class, 'update'])->name('key_movements.update');
+    Route::delete('/excluir/{id}', [KeyMovementController::class, 'destroy'])->name('key_movements.destroy');
+  });
 });
 
 
