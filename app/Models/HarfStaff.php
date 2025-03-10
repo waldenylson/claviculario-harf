@@ -20,4 +20,9 @@ class HarfStaff extends Model
   {
     return $this->belongsTo(Department::class);
   }
+
+  public function keyMovements()
+  {
+    return $this->hasMany(KeyMovement::class);
+  }
 }
