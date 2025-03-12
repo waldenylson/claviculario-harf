@@ -7,7 +7,7 @@ use App\Models\KeyMovement;
 
 class KeyMovementRepository implements KeyMovementRepositoryContract
 {
-  protected string $modelClass = KeyMovement::class;
+  protected $modelClass = KeyMovement::class;
 
   public function listMovements($paginateResult = true)
   {

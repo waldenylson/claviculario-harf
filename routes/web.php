@@ -5,6 +5,7 @@ use App\Http\Controllers\EfetivoController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\KeyController;
 use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\KeyMovementController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;

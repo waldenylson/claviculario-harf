@@ -20,6 +20,7 @@ class KeyMovementController extends Controller
   public function index()
   {
     $movements = $this->keyMovementRepository->listMovements(true);
+
     return view('key_movements.index')->with(compact('movements'));
   }
 

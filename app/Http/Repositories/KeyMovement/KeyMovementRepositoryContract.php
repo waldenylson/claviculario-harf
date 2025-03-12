@@ -3,7 +3,6 @@
 namespace App\Http\Repositories\KeyMovement;
 
 use App\Http\Requests\StoreKeyMovementPostRequest;
-use App\Models\KeyMovement;
 
 interface KeyMovementRepositoryContract
 {
