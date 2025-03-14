@@ -9,6 +9,8 @@ class Key extends Model
 {
   use HasFactory;
 
+  protected $table = 'keys';
+
   protected $guarded = [];
 
   public function department()

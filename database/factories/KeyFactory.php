@@ -14,7 +14,7 @@ class KeyFactory extends Factory
   {
     return [
       'department_id' => Department::factory(),
-      'number' => $this->faker->randomNumber(),
+      'number' => $this->faker->randomNumber(3),
       'internal_hallway' => $this->faker->boolean(),
       'eps' => $this->faker->boolean(),
       'epms' => $this->faker->boolean(),

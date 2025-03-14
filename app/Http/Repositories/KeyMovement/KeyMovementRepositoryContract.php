@@ -6,7 +6,7 @@ use App\Http\Requests\StoreKeyMovementPostRequest;
 
 interface KeyMovementRepositoryContract
 {
-  public function listMovements($paginateResult = true);
+  public function listMovements($paginateResult = true, $paginateNumber = 10);
   public function findSingleMovement($id);
   public function store(StoreKeyMovementPostRequest $request);
   public function edit($id);

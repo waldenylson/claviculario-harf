@@ -9,15 +9,9 @@ class KeyMovement extends Model
 {
   use HasFactory;
 
-  protected $fillable = [
-    'key_id',
-    'harf_staff_id',
-    'user_id',
-    'movement_type',
-    'out',
-    'return',
-    'comments',
-  ];
+  protected $guarded = [];
+
+  protected $table = 'key_movements';
 
   public function key()
   {

@@ -1,4 +1,3 @@
-<!-- filepath: d:\Waldenylson\Projetos\claviculario-harf\resources\views\key_movements\new.blade.php -->
 @extends('layouts.app')
 
 @section('content')
@@ -6,31 +5,53 @@
     <h1>Nova Movimentação de Chave</h1>
     <form action="{{ route('key_movements.store') }}" method="POST">
       @csrf
+      <!-- ...existing code... -->
       <div class="form-group">
-        <label for="key_id">Chave</label>
-        <select name="key_id" id="key_id" class="form-control">
-          @foreach ($keys as $key)
-            <option value="{{ $key->id }}">{{ $key->name }}</option>
+        <label for="keys">Chaves</label>
+        <div class="row">
+          @foreach ($keys->chunk(60) as $pageIndex => $pageChunk)
+            <div class="col-md-12">
+              <div class="row">
+                @foreach ($pageChunk->chunk(10) as $index => $chunk)
+                  <div class="col-md-4" style="margin 1px solid yellow;">
+                    <fieldset>
+                      <legend>Chaves de {{ $pageIndex * 60 + $index * 10 + 1 }} até
+                        {{ $pageIndex * 60 + ($index + 1) * 10 }}</legend>
+                      <div class="row">
+                        @foreach ($chunk->chunk(5) as $subChunk)
+                          <div id="teste" 
+                            class="col-md-6" 
+                            style="margin-bottom: 2px; 
+                              border: 1px solid green;
+                              padding: 5px;" 
+                            >
+                            @foreach ($subChunk as $key)
+                              <div class="form-check" 
+                                style="margin-bottom: 5px;
+                                  margin-top: 5px;
+                                  margin-left: 5px; 
+                                  border: 1px solid red;
+                                  width: 50px;"
+                              >
+                                <input type="checkbox" name="keys[]" value="{{ $key->id }}" 
+                                  class="form-check-input" style="margin-left: -20px;">
+                                <label class="form-check-label">{{ $key->number }}</label>
+                              </div>
+                            @endforeach
+                          </div>
+                        @endforeach
+                      </div>
+                    </fieldset>
+                  </div>
+                @endforeach
+              </div>
+            </div>
           @endforeach
-        </select>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="staff_id">Efetivo</label>
-        <select name="staff_id" id="staff_id" class="form-control">
-          @foreach ($staff as $s)
-            <option value="{{ $s->id }}">{{ $s->name }}</option>
-          @endforeach
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="user_id">Usuário</label>
-        <select name="user_id" id="user_id" class="form-control">
-          @foreach ($users as $user)
-            <option value="{{ $user->id }}">{{ $user->name }}</option>
-          @endforeach
-        </select>
-      </div>
-      <button type="submit" class="btn btn-primary">Salvar</button>
     </form>
+    <div class="pagination">
+      {{ $keys->links() }}
+    </div>
   </div>
 @endsection

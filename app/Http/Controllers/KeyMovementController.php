@@ -2,19 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Repositories\Efetivo\EfetivoRepository;
 use App\Http\Repositories\KeyMovement\KeyMovementRepository;
+use App\Http\Repositories\Keys\KeyRepository as KeysKeyRepository;
+use App\Http\Repositories\Users\UserRepository;
 use App\Http\Requests\StoreKeyMovementPostRequest;
-use App\Models\Key;
-use App\Models\HarfStaff;
-use App\Models\User;
 
 class KeyMovementController extends Controller
 {
+  private KeysKeyRepository $keyRepository;
   private KeyMovementRepository $keyMovementRepository;
+  private EfetivoRepository $efetivoRepository;
+  private UserRepository $userRepository;
 
-  public function __construct(KeyMovementRepository $repository)
+  public function __construct(
+    KeyMovementRepository $repository,
+    KeysKeyRepository $keyRepository,
+    EfetivoRepository $efetivoRepository,
+    UserRepository $userRepository
+  )
   {
     $this->keyMovementRepository = $repository;
+    $this->keyRepository = $keyRepository;
+    $this->efetivoRepository = $efetivoRepository;
+    $this->userRepository = $userRepository;
   }
 
   public function index()
@@ -26,9 +37,10 @@ class KeyMovementController extends Controller
 
   public function create()
   {
-    $keys = Key::all();
-    $staff = HarfStaff::all();
-    $users = User::all();
+    $keys = $this->keyRepository->listKeys(true, 100);
+    $staff = $this->efetivoRepository->listStaff(true);
+    $users = $this->userRepository->listUsers(true);
+
     return view('key_movements.new')->with(compact('keys', 'staff', 'users'));
   }
 
@@ -46,9 +58,10 @@ class KeyMovementController extends Controller
   public function edit($id)
   {
     $movement = $this->keyMovementRepository->edit($id);
-    $keys = Key::all();
-    $staff = HarfStaff::all();
-    $users = User::all();
+    $keys = $this->keyRepository->listKeys();
+    $staff = $this->efetivoRepository->listStaff();
+    $users = $this->userRepository->listUsers();
+
     return view('key_movements.edit')->with(compact('movement', 'keys', 'staff', 'users'));
   }
 

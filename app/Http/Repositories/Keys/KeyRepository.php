@@ -10,10 +10,12 @@ class KeyRepository implements KeyRepositoryContract
 {
   protected string $modelClass = Key::class;
 
-  public function listKeys($paginateResult = false)
+  public function listKeys($paginateResult = false, $paginateNumber = 10)
   {
     if ($paginateResult) {
-      return $this->modelClass::with('department')->paginate(10);
+      return $this->modelClass::with('department')
+        ->orderBy('number', 'asc')
+        ->paginate($paginateNumber ?? 10);
     }
 
     return $this->modelClass::with('department')->get();

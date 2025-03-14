@@ -13,7 +13,7 @@ interface KeyRepositoryContract
   public function edit(int $id);
   public function persistUpdate(StoreKeyPostRequest $request, int $id);
   public function destroy(int $id);
-  public function listKeys($paginateResult = false);
+  public function listKeys($paginateResult = false, $paginateNumber = 10);
   public function findSingleKey(int $id);
   public function getAllKeysForSelect();
 }

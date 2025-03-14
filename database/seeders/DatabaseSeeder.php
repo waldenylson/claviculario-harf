@@ -30,6 +30,6 @@ class DatabaseSeeder extends Seeder
 
     \App\Models\Department::factory(10)->create();
     \App\Models\HarfStaff::factory(10)->create();
-    \App\Models\Key::factory(50)->create();
+    \App\Models\Key::factory(200)->create();
   }
 }

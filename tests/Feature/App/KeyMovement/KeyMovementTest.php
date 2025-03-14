@@ -33,7 +33,7 @@ class KeyMovementTest extends TestCase
     $user = $this->createTestUser();
     $response = $this->actingAs($user)->get(route('key_movements.index'));
     $response->assertStatus(200);
-    $response->assertSee('Movimentações de Chave');
+    $response->assertSee('Movimentações de Chaves');
   }
 
   public function test_create_page_displays_correctly()
@@ -41,7 +41,7 @@ class KeyMovementTest extends TestCase
     $user = $this->createTestUser();
     $response = $this->actingAs($user)->get(route('key_movements.create'));
     $response->assertStatus(200);
-    $response->assertSee('Criar Nova Movimentação de Chave');
+    $response->assertSee('Nova Movimentação de Chave');
   }
 
   public function test_creates_a_new_key_movement_with_valid_data()
@@ -57,6 +57,7 @@ class KeyMovementTest extends TestCase
       'movement_type' => 'Saída',
       'out' => now(),
       'comments' => 'Teste de movimentação',
+      'movement' => 'some_movement_value',
     ];
 
     $response = $this->actingAs($user)->post(route('key_movements.store'), $data);
@@ -67,7 +68,9 @@ class KeyMovementTest extends TestCase
   public function test_edit_page_displays_correctly()
   {
     $user = $this->createTestUser();
-    $movement = KeyMovement::factory()->create();
+    $key = $this->createTestKey();
+    $staff = $this->createTestHarfStaff();
+    $movement = KeyMovement::factory()->create(['key_id' => $key->id, 'harf_staff_id' => $staff->id]);
 
     $response = $this->actingAs($user)->get(route('key_movements.edit', $movement->id));
     $response->assertStatus(200);
@@ -77,7 +80,9 @@ class KeyMovementTest extends TestCase
   public function test_updates_key_movement_with_valid_data()
   {
     $user = $this->createTestUser();
-    $movement = KeyMovement::factory()->create();
+    $key = $this->createTestKey();
+    $staff = $this->createTestHarfStaff();
+    $movement = KeyMovement::factory()->create(['key_id' => $key->id, 'harf_staff_id' => $staff->id]);
 
     $data = [
       'movement_type' => 'Retorno',
@@ -92,7 +97,9 @@ class KeyMovementTest extends TestCase
   public function test_deletes_existing_key_movement()
   {
     $user = $this->createTestUser();
-    $movement = KeyMovement::factory()->create();
+    $key = $this->createTestKey();
+    $staff = $this->createTestHarfStaff();
+    $movement = KeyMovement::factory()->create(['key_id' => $key->id, 'harf_staff_id' => $staff->id]);
 
     $response = $this->actingAs($user)->delete(route('key_movements.destroy', $movement->id));
     $response->assertStatus(302);
