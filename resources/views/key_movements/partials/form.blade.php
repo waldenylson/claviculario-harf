@@ -32,16 +32,15 @@
                     @endforeach
                   </div>
                 </fieldset>
-                @if (($index + 1) % 4 == 0)
               </div>
-              <div class="row">
-            @endif
+              @if (($index + 1) % 4 == 0)
+                </div><div class="row">
+              @endif
+            @endforeach
           </div>
+        </div><br />
+      </div>
     @endforeach
-  </div>
-  </div><br />
-  </div>
-  @endforeach
   </div>
 
   <div class="pagination-controls">
