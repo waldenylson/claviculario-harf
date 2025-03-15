@@ -18,7 +18,7 @@ class KeyRepository implements KeyRepositoryContract
         ->paginate($paginateNumber ?? 10);
     }
 
-    return $this->modelClass::with('department')->get();
+    return $this->modelClass::with('department')->orderBy('number', 'asc')->get();
   }
 
   public function findSingleKey(int $id)
