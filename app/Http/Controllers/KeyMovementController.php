@@ -46,7 +46,7 @@ class KeyMovementController extends Controller
 
   public function store(StoreKeyMovementPostRequest $request)
   {
-    dd($request->all());
+    // dd($request->all());
 
     $result = $this->keyMovementRepository->store($request);
 

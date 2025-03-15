@@ -70,7 +70,13 @@ class KeyMovementTest extends TestCase
     $user = $this->createTestUser();
     $key = $this->createTestKey();
     $staff = $this->createTestHarfStaff();
-    $movement = KeyMovement::factory()->create(['key_id' => $key->id, 'harf_staff_id' => $staff->id]);
+    $movement = KeyMovement::factory()->create([
+      'key_id' => $key->id,
+      'harf_staff_id' => $staff->id,
+      'user_id' => $user->id,
+      'movement_type' => 'Saída',
+      'out' => now(),
+    ]);
 
     $response = $this->actingAs($user)->get(route('key_movements.edit', $movement->id));
     $response->assertStatus(200);
@@ -82,7 +88,13 @@ class KeyMovementTest extends TestCase
     $user = $this->createTestUser();
     $key = $this->createTestKey();
     $staff = $this->createTestHarfStaff();
-    $movement = KeyMovement::factory()->create(['key_id' => $key->id, 'harf_staff_id' => $staff->id]);
+    $movement = KeyMovement::factory()->create([
+      'key_id' => $key->id,
+      'harf_staff_id' => $staff->id,
+      'user_id' => $user->id,
+      'movement_type' => 'Saída',
+      'out' => now(),
+    ]);
 
     $data = [
       'movement_type' => 'Retorno',
@@ -99,7 +111,13 @@ class KeyMovementTest extends TestCase
     $user = $this->createTestUser();
     $key = $this->createTestKey();
     $staff = $this->createTestHarfStaff();
-    $movement = KeyMovement::factory()->create(['key_id' => $key->id, 'harf_staff_id' => $staff->id]);
+    $movement = KeyMovement::factory()->create([
+      'key_id' => $key->id,
+      'harf_staff_id' => $staff->id,
+      'user_id' => $user->id,
+      'movement_type' => 'Saída',
+      'out' => now(),
+    ]);
 
     $response = $this->actingAs($user)->delete(route('key_movements.destroy', $movement->id));
     $response->assertStatus(302);
