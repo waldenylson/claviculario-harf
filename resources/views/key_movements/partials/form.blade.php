@@ -1,8 +1,9 @@
 @php
-  $editObjectInstance = isset($editObjectInstance) ? $editObjectInstance : null;
+  $editObjectInstance = isset($featureInstance) ? $featureInstance : null;
 @endphp
 
 <x-AppComponents::form-template :featureInstance="$editObjectInstance">
+  <input type="hidden" name="electronic_signature" id="electronic_signature">
   <div id="pagination-container">
     @foreach ($keys->chunk(120) as $pageIndex => $pageChunk)
       <div class="page" style="display: {{ $pageIndex === 0 ? 'block' : 'none' }};">
@@ -15,7 +16,8 @@
               @endphp
               <div class="col-md-3" style="margin-bottom: 20px;">
                 <fieldset class="custom-groupbox">
-                  <legend style="width: 190px">&nbsp;&nbsp;Chaves de {{ $start }} - {{ $end }}</legend>
+                  <legend style="width: 190px">&nbsp;&nbsp;Chaves de {{ $start }} - {{ $end }}
+                  </legend>
                   <div class="row">
                     @foreach ($chunk->chunk(5) as $subChunk)
                       <div class="col-md-4">
@@ -23,7 +25,7 @@
                           <div class="form-check" style="margin-bottom: 10px;">
                             <input type="checkbox" name="keys[]" value="{{ $key->id }}"
                               class="form-checkbox h-5 w-5 text-gray-700 dark:text-gray-300
-                               dark:bg-gray-800 dark:border-gray-600 focus:ring-0 focus:ring-offset-0"
+                                 dark:bg-gray-800 dark:border-gray-600 focus:ring-0 focus:ring-offset-0"
                               style="margin-left: -20px;cursor: pointer;" />
                             <label for="keys" class="form-label label">{{ $key->number }}</label>
                           </div>
@@ -34,13 +36,14 @@
                 </fieldset>
               </div>
               @if (($index + 1) % 4 == 0)
-                </div><div class="row">
-              @endif
-            @endforeach
           </div>
-        </div><br />
-      </div>
+          <div class="row">
+    @endif
     @endforeach
+  </div>
+  </div><br />
+  </div>
+  @endforeach
   </div>
 
   <div class="pagination-controls">
@@ -125,5 +128,48 @@
   function lastPage() {
     currentPage = pages.length - 1;
     showPage(currentPage);
+  }
+
+  document.getElementById('btn-submit').addEventListener('click', function(event) {
+    event.preventDefault();
+    submitFormWithSignature();
+  });
+
+  function submitFormWithSignature() {
+    Swal.fire({
+      title: 'Digite sua assinatura eletrônica!',
+      input: 'password',
+      inputLabel: 'Senha/Assinatura Eletrônica',
+      inputPlaceholder: '********',
+      inputAttributes: {
+        autocapitalize: 'off',
+        autocorrect: 'off',
+        style: 'background-color: #333; color: #fff;',
+        inputmode: 'numeric'
+      },      
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Enviar',
+      showLoaderOnConfirm: false,
+      cancelButtonText: 'Cancelar',
+      buttonsStyling: true,
+      customClass: {
+        confirmButton: 'btn btn-primary',
+        cancelButton: 'btn btn-secondary'
+      },
+      preConfirm: (signature) => {
+        if (!signature) {
+          Swal.showValidationMessage('Assinatura eletrônica é Obrigatória!')
+        } else {
+          document.getElementById('electronic_signature').value = signature;
+          document.getElementById('key-movement-form').submit();
+        }
+      }
+    });
+
+    // Adiciona um evento de input para permitir apenas números
+    Swal.getInput().addEventListener('input', function(event) {
+      this.value = this.value.replace(/[^0-9]/g, '');
+    });
   }
 </script>
