@@ -303,6 +303,27 @@ return [
       'icon' => 'fa fa-key',
     ],
     [
+      'text' => 'MOVIMENTAÇÕES',
+      'key' => 'key_movements',
+      'icon' => 'fa fa-exchange-alt',
+      'submenu' => [
+        [
+          'text' => 'Nova Movimentação',
+          'url'  => 'movimentacao-chave/novo',
+          'icon' => 'fas fa-fw fa-plus-square',
+          'icon_color' => 'info',
+          'label_color' => 'info',
+        ],
+        [
+          'text' => 'Listar Todas',
+          'url'  => 'movimentacao-chave',
+          'icon' => 'fas fa-fw fa-rectangle-list',
+          'icon_color' => '',
+          'label_color' => 'success',
+        ],
+      ],
+    ],
+    [
       'text' => 'CHAVES',
       'key' => 'keys',
       'icon' => 'fa fa-key',
