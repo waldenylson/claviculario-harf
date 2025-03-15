@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Repositories\Departments\DepartmentsRepository;
 use App\Http\Repositories\Keys\KeyRepository;
 use App\Http\Requests\StoreKeyPostRequest;
-use App\Models\Department;
 
 class KeyController extends Controller
 {
@@ -27,7 +26,8 @@ class KeyController extends Controller
 
   public function create()
   {
-    $departments = Department::all();
+    $departments = $this->departmentsRepository->listDepartments();
+
     return view('keys.new', compact('departments'));
   }
 
@@ -47,11 +47,12 @@ class KeyController extends Controller
   public function edit(int $id)
   {
     $key = $this->keysRepository->edit($id);
-    $departments = Department::all();
 
-    $department = $this->departmentsRepository->findSingleDepartment($id);
+    $departments = $this->departmentsRepository->listDepartments();
 
-    return view('keys.edit', compact('key', 'departments'));
+    $department = $this->departmentsRepository->findSingleDepartment($key->department_id);
+
+    return view('keys.edit', compact('key', 'departments', 'department'));
   }
 
   public function update(StoreKeyPostRequest $request, int $id)

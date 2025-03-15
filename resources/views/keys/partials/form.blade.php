@@ -1,5 +1,5 @@
 @php
-  $editObjectInstance = isset($editObjectInstance) ? $editObjectInstance : null;
+  $editObjectInstance = isset($featureInstance) ? $featureInstance : null;
 @endphp
 
 <x-AppComponents::form-template :featureInstance="$editObjectInstance">
