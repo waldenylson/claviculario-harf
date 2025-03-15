@@ -37,7 +37,7 @@ class KeyMovementController extends Controller
 
   public function create()
   {
-    $keys = $this->keyRepository->listKeys(true, 100);
+    $keys = $this->keyRepository->listKeys();
     $staff = $this->efetivoRepository->listStaff(true);
     $users = $this->userRepository->listUsers(true);
 
@@ -46,6 +46,8 @@ class KeyMovementController extends Controller
 
   public function store(StoreKeyMovementPostRequest $request)
   {
+    dd($request->all());
+
     $result = $this->keyMovementRepository->store($request);
 
     if ($result) {

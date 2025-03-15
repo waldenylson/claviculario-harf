@@ -13,14 +13,6 @@ class StoreKeyMovementPostRequest extends FormRequest
 
   public function rules()
   {
-    return [
-      'key_id' => 'required|exists:keys,id',
-      'harf_staff_id' => 'required|exists:harf_staff,id',
-      'user_id' => 'required|exists:users,id',
-      'movement_type' => 'required|string',
-      'out' => 'required|date',
-      'return' => 'nullable|date',
-      'comments' => 'nullable|string',
-    ];
+    return [];
   }
 }
