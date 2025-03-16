@@ -7,6 +7,9 @@ use App\Http\Repositories\KeyMovement\KeyMovementRepository;
 use App\Http\Repositories\Keys\KeyRepository as KeysKeyRepository;
 use App\Http\Repositories\Users\UserRepository;
 use App\Http\Requests\StoreKeyMovementPostRequest;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use App\Models\HarfStaff as Efetivo;
 
 class KeyMovementController extends Controller
 {
@@ -46,15 +49,44 @@ class KeyMovementController extends Controller
 
   public function store(StoreKeyMovementPostRequest $request)
   {
-    dd($request->all());
+    DB::beginTransaction();
 
-    $result = $this->keyMovementRepository->store($request);
+    try {
+      $user = Auth::user();
+      $electronicSignature = $request->input('electronic_signature');
+      $harfStaff = Efetivo::where('electronic_signature', $electronicSignature)->first();
 
-    if ($result) {
+      if (!$harfStaff) {
+        return redirect()->back()->with('error', 'Assinatura eletrônica inválida!');
+      }
+
+      $keyIds = $request->input('keys', []);
+      foreach ($keyIds as $keyId) {
+        $data = [
+          'key_id' => $keyId,
+          'harf_staff_id' => $harfStaff->id,
+          'user_id' => $user->id,
+          'movement' => $request->input('movement'),
+          'movement_type' => $request->input('movement_type'),
+          'out' => $request->input('out'),
+          'return' => $request->input('return'),
+          'comments' => $request->input('comments'),
+        ];
+
+        $result = $this->keyMovementRepository->store($data);
+
+        if (!$result) {
+          DB::rollBack();
+          return redirect()->back()->with('error', 'Erro ao Tentar Inserir a Movimentação de Chave!');
+        }
+      }
+
+      DB::commit();
       return redirect()->back()->with('message', 'Movimentação de Chave Inserida com Sucesso!');
+    } catch (\Exception $e) {
+      DB::rollBack();
+      return redirect()->back()->with('error', 'Erro ao Tentar Inserir a Movimentação de Chave: ' . $e->getMessage());
     }
-
-    return redirect()->back()->with('error', 'Erro ao Tentar Inserir a Movimentação de Chave!');
   }
 
   public function edit($id)
