@@ -4,6 +4,21 @@
 
 <x-AppComponents::form-template :featureInstance="$editObjectInstance">
   <input type="hidden" name="electronic_signature" id="electronic_signature">
+  <div class="row">
+    <fieldset class="custom-groupbox" style="margin-bottom: 10px; margin-left: 15px; width: 97.3%">
+      <legend style="width: 130px">&nbsp;&nbsp;Efetivo HARF</legend>
+      <div class="col-md-6">
+        <select class="form-control" id="efetivo_id" name="efetivo_id" required>
+          <option value="">Selecione...</option>
+          @foreach ($staff as $efetivo)
+            <option value="{{ $efetivo->id }}" {{ old('efetivo_id') == $efetivo->id ? 'selected' : '' }}>
+              {{ $efetivo->name }}
+            </option>
+          @endforeach
+        </select>
+      </div>
+    </fieldset>
+  </div><br />
   <div id="pagination-container">
     @foreach ($keys->chunk(120) as $pageIndex => $pageChunk)
       <div class="page" style="display: {{ $pageIndex === 0 ? 'block' : 'none' }};">
@@ -26,7 +41,8 @@
                             <input type="checkbox" name="keys[]" value="{{ $key->id }}"
                               class="form-checkbox h-5 w-5 text-gray-700 dark:text-gray-300
                                  dark:bg-gray-800 dark:border-gray-600 focus:ring-0 focus:ring-offset-0"
-                              style="margin-left: -20px;cursor: pointer;" />
+                              style="margin-left: -20px;cursor: pointer;"
+                              {{ in_array($key->id, old('keys', [])) ? 'checked' : '' }} />
                             <label for="keys" class="form-label label">{{ $key->number }}</label>
                           </div>
                         @endforeach
@@ -34,7 +50,7 @@
                     @endforeach
                   </div>
                 </fieldset>
-              </div>
+              </div> 
               @if (($index + 1) % 4 == 0)
           </div>
           <div class="row">
@@ -146,7 +162,7 @@
         autocorrect: 'off',
         style: 'background-color: #333; color: #fff;',
         inputmode: 'numeric'
-      },      
+      },
       icon: 'question',
       showCancelButton: true,
       confirmButtonText: 'Enviar',
@@ -173,3 +189,4 @@
     });
   }
 </script>
+

@@ -7,7 +7,7 @@
       {{ $slot }}
 
       <hr style="margin-bottom: 5px; background-color:aliceblue" />
-      <button class="btn btn-primary" id="btn-submit" type="button">
+      <button class="btn btn-primary" id="btn-submit" type="submit">
         <i class="fa fa-save"></i>&nbsp;&nbsp;{{ isset($featureInstance) ? 'Atualizar' : 'Salvar' }}
       </button>
       <button class="btn btn-danger" id="btn-cancelar" type="reset">

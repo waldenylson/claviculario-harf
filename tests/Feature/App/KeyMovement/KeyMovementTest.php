@@ -8,6 +8,7 @@ use App\Models\KeyMovement;
 use App\Models\Key;
 use App\Models\HarfStaff;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class KeyMovementTest extends TestCase
 {
@@ -46,22 +47,33 @@ class KeyMovementTest extends TestCase
 
   public function test_creates_a_new_key_movement_with_valid_data()
   {
-    $user = $this->createTestUser();
-    $key = $this->createTestKey();
-    $staff = $this->createTestHarfStaff();
+    $user = User::factory()->create();
+    $efetivo = HarfStaff::factory()->create();
+    $key = Key::factory()->create();
 
     $data = [
       'key_id' => $key->id,
-      'harf_staff_id' => $staff->id,
+      'efetivo_id' => $efetivo->id,
       'user_id' => $user->id,
+      'movement' => 'some_movement_value',
       'movement_type' => 'Saída',
       'out' => now(),
       'comments' => 'Teste de movimentação',
-      'movement' => 'some_movement_value',
+      'electronic_signature' => 'valid_signature', // Assinatura válida para o teste
     ];
+
+    // Simular a assinatura eletrônica válida
+    $efetivo->electronic_signature = Hash::make('valid_signature');
+    $result = $efetivo->save();
+
+    dd($result);
 
     $response = $this->actingAs($user)->post(route('key_movements.store'), $data);
     $response->assertStatus(302);
+
+    // Remover a assinatura eletrônica dos dados antes de verificar no banco de dados
+    unset($data['electronic_signature']);
+
     $this->assertDatabaseHas('key_movements', $data);
   }
 

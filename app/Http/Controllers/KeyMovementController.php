@@ -10,6 +10,7 @@ use App\Http\Requests\StoreKeyMovementPostRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Models\HarfStaff as Efetivo;
+use Illuminate\Support\Facades\Hash;
 
 class KeyMovementController extends Controller
 {
@@ -54,13 +55,16 @@ class KeyMovementController extends Controller
     try {
       $user = Auth::user();
       $electronicSignature = $request->input('electronic_signature');
-      $harfStaff = Efetivo::where('electronic_signature', $electronicSignature)->first();
 
-      if (!$harfStaff) {
-        return redirect()->back()->with('error', 'Assinatura eletrônica inválida!');
+      // Verificar a assinatura eletrônica
+      $harfStaff = Efetivo::where('id', $request->input('efetivo_id'))->first();
+
+      if (!$harfStaff || !Hash::check($electronicSignature, $harfStaff->electronic_signature)) {
+        return redirect()->back()->withInput()->with('error', 'Assinatura eletrônica inválida!');
       }
 
       $keyIds = $request->input('keys', []);
+
       foreach ($keyIds as $keyId) {
         $data = [
           'key_id' => $keyId,
@@ -73,11 +77,11 @@ class KeyMovementController extends Controller
           'comments' => $request->input('comments'),
         ];
 
-        $result = $this->keyMovementRepository->store($data);
+        $result = \App\Models\KeyMovement::create($data);
 
         if (!$result) {
           DB::rollBack();
-          return redirect()->back()->with('error', 'Erro ao Tentar Inserir a Movimentação de Chave!');
+          return redirect()->back()->withInput()->with('error', 'Erro ao Tentar Inserir a Movimentação de Chave!');
         }
       }
 
@@ -85,7 +89,7 @@ class KeyMovementController extends Controller
       return redirect()->back()->with('message', 'Movimentação de Chave Inserida com Sucesso!');
     } catch (\Exception $e) {
       DB::rollBack();
-      return redirect()->back()->with('error', 'Erro ao Tentar Inserir a Movimentação de Chave: ' . $e->getMessage());
+      return redirect()->back()->withInput()->with('error', 'Erro ao Tentar Inserir a Movimentação de Chave: ' . $e->getMessage());
     }
   }
 
