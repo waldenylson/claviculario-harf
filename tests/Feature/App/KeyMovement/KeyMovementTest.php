@@ -34,7 +34,7 @@ class KeyMovementTest extends TestCase
     $user = $this->createTestUser();
     $response = $this->actingAs($user)->get(route('key_movements.index'));
     $response->assertStatus(200);
-    $response->assertSee('Movimentações de Chaves');
+    $response->assertSee('Chaves Movimentadas sem Devolução');
   }
 
   public function test_create_page_displays_correctly()
@@ -49,7 +49,9 @@ class KeyMovementTest extends TestCase
   {
     $user = User::factory()->create();
     $efetivo = HarfStaff::factory()->create();
-    $key = Key::factory()->create();
+    $key = Key::factory()->create([
+      'number' => '123', // Adicione o campo 'number' aqui
+    ]);
 
     $data = [
       'key_id' => $key->id,
@@ -64,9 +66,7 @@ class KeyMovementTest extends TestCase
 
     // Simular a assinatura eletrônica válida
     $efetivo->electronic_signature = Hash::make('valid_signature');
-    $result = $efetivo->save();
-
-    dd($result);
+    $efetivo->save();
 
     $response = $this->actingAs($user)->post(route('key_movements.store'), $data);
     $response->assertStatus(302);

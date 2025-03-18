@@ -13,12 +13,13 @@ class KeyRepository implements KeyRepositoryContract
   public function listKeys($paginateResult = false, $paginateNumber = 10)
   {
     if ($paginateResult) {
-      return $this->modelClass::with('department')
+      return $this->modelClass::with('department', 'movements')
         ->orderBy('number', 'asc')
         ->paginate($paginateNumber ?? 10);
     }
 
-    return $this->modelClass::with('department')->orderBy('number', 'asc')->get();
+    return $this->modelClass::with('department', 'movements')
+      ->orderBy('number', 'asc')->get();
   }
 
   public function findSingleKey(int $id)

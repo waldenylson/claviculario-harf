@@ -2,27 +2,25 @@
 
 @section('content')
   <div class="container">
-    <h1>Movimentações de Chaves</h1>
-    <a href="{{ route('key_movements.create') }}" class="btn btn-primary">Nova Movimentação</a>
+    <h1>Chaves Movimentadas sem Devolução</h1>
+    
     <table class="table mt-3">
       <thead>
         <tr>
-          <th>ID</th>
           <th>Chave</th>
-          <th>Efetivo</th>
-          <th>Usuário</th>
-          <th>Data</th>
+          <th>Efetivo HARF</th>
+          <th>Permanência</th>
+          <th>Data/Hora</th>
           <th>Ações</th>
         </tr>
       </thead>
       <tbody>
         @foreach ($movements as $movement)
           <tr>
-            <td>{{ $movement->id }}</td>
-            <td>{{ $movement->key->name }}</td>
-            <td>{{ $movement->staff->name }}</td>
+            <td>{{ $movement->key->number }}</td>
+            <td>{{ $movement->harfStaff->name }}</td>
             <td>{{ $movement->user->name }}</td>
-            <td>{{ $movement->created_at }}</td>
+            <td>{{ $movement->out }}</td>
             <td>
               <a href="{{ route('key_movements.edit', $movement->id) }}" class="btn btn-warning">Editar</a>
               <form action="{{ route('key_movements.destroy', $movement->id) }}" method="POST" style="display:inline;">

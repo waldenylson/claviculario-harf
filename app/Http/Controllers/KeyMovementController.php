@@ -72,7 +72,7 @@ class KeyMovementController extends Controller
           'user_id' => $user->id,
           'movement' => $request->input('movement'),
           'movement_type' => $request->input('movement_type'),
-          'out' => $request->input('out'),
+          'out' => $request->input('out') ?? now(),
           'return' => $request->input('return'),
           'comments' => $request->input('comments'),
         ];

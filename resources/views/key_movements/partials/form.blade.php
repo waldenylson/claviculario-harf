@@ -4,8 +4,9 @@
 
 <x-AppComponents::form-template :featureInstance="$editObjectInstance">
   <input type="hidden" name="electronic_signature" id="electronic_signature">
+  <input type="hidden" name="movement_type" id="movement_type" value="s">
   <div class="row">
-    <fieldset class="custom-groupbox" style="margin-bottom: 10px; margin-left: 15px; width: 97.3%">
+    <fieldset class="custom-groupbox" style="margin-bottom: 10px; margin-left: 15px; width: 97.3%;">
       <legend style="width: 130px">&nbsp;&nbsp;Efetivo HARF</legend>
       <div class="col-md-6">
         <select class="form-control" id="efetivo_id" name="efetivo_id" required>
@@ -31,26 +32,31 @@
               @endphp
               <div class="col-md-3" style="margin-bottom: 20px;">
                 <fieldset class="custom-groupbox">
-                  <legend style="width: 190px">&nbsp;&nbsp;Chaves de {{ $start }} - {{ $end }}
-                  </legend>
+                  <legend style="width: 190px">&nbsp;&nbsp;Chaves de {{ $start }} - {{ $end }}</legend>
                   <div class="row">
                     @foreach ($chunk->chunk(5) as $subChunk)
                       <div class="col-md-4">
                         @foreach ($subChunk as $key)
+                          @php
+                            $isCheckedOut = $key->is_checked_out; // Supondo que você tenha essa informação
+                          @endphp
                           <div class="form-check" style="margin-bottom: 10px;">
                             <input type="checkbox" name="keys[]" value="{{ $key->id }}"
                               class="form-checkbox h-5 w-5 text-gray-700 dark:text-gray-300
                                  dark:bg-gray-800 dark:border-gray-600 focus:ring-0 focus:ring-offset-0"
-                              style="margin-left: -20px;cursor: pointer;"
+                              style="margin-left: -20px;cursor: pointer;" {{ $isCheckedOut ? 'disabled' : '' }}
                               {{ in_array($key->id, old('keys', [])) ? 'checked' : '' }} />
-                            <label for="keys" class="form-label label">{{ $key->number }}</label>
+                            <label for="keys" class="form-label label"
+                              style="{{ $isCheckedOut ? 'color: red;' : '' }}">
+                              {{ $key->number }}
+                            </label>
                           </div>
                         @endforeach
                       </div>
                     @endforeach
                   </div>
                 </fieldset>
-              </div> 
+              </div>
               @if (($index + 1) % 4 == 0)
           </div>
           <div class="row">
@@ -189,4 +195,3 @@
     });
   }
 </script>
-
