@@ -32,10 +32,10 @@
                   <td>{{ $key->epms ? 'Sim' : 'Não' }}</td>
                   <td>{{ $key->comments }}</td>
                   <td class="text-center">
-                    <a href="{{ route('keys.edit', $key->id) }}" class="btn btn-sm btn-warning mx-1">
+                    <a href="{{ route('keys.edit', $key->id) }}" class="btn btn-sm btn-warning mx-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar">
                       <i class="fa fa-edit"></i>
                     </a>
-                    <button class="btn btn-sm btn-danger mx-1 btn-delete"
+                    <button class="btn btn-sm btn-danger mx-1 btn-delete" data-bs-toggle="tooltip" data-bs-placement="top" title="Excluir"
                       data-link="{{ route('keys.destroy', $key->id) }}" data-id="{{ $key->id }}"
                       data-name="{{ $key->number }}">
                       <i class="fa fa-trash"></i>
@@ -91,6 +91,12 @@
           });
         });
       });
+
+      // Inicializar tooltips do Bootstrap
+      const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+      const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+      })
     });
   </script>
 

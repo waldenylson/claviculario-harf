@@ -34,10 +34,10 @@
                   <td>{{ $staff->department->name ?? 'Sem Departamento' }}</td>
                   <td>{{ $staff->military ? 'Sim' : 'Não' }}</td>
                   <td class="text-center">
-                    <a href="{{ route('efetivo.edit', $staff->id) }}" class="btn btn-sm btn-warning mx-1">
+                    <a href="{{ route('efetivo.edit', $staff->id) }}" class="btn btn-sm btn-warning mx-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar">
                       <i class="fa fa-edit"></i>
                     </a>
-                    <button class="btn btn-sm btn-danger mx-1 btn-delete"
+                    <button class="btn btn-sm btn-danger mx-1 btn-delete" data-bs-toggle="tooltip" data-bs-placement="top" title="Excluir"
                       data-link="{{ route('efetivo.destroy', $staff->id) }}" data-id="{{ $staff->id }}"
                       data-name="{{ $staff->name }}">
                       <i class="fa fa-trash"></i>
@@ -93,6 +93,12 @@
           });
         });
       });
+
+      // Inicializar tooltips do Bootstrap
+      const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+      const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+      })
     });
   </script>
 
