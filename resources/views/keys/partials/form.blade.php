@@ -1,10 +1,23 @@
 @php
   $editObjectInstance = isset($featureInstance) ? $featureInstance : null;
+
+  // dd($editObjectInstance->reserved);
 @endphp
 
 <x-AppComponents::form-template :featureInstance="$editObjectInstance">
 
   <div class="row">
+    <div class="form-group">
+    <div class="flex items-center">
+      <input type="hidden" name="reserved" id="reserved" value="0">
+      <input type="checkbox" id="reserved" name="reserved" value="1"
+        class="form-checkbox h-5 w-5 text-gray-700 dark:text-gray-300
+         dark:bg-gray-800 dark:border-gray-600 focus:ring-0 focus:ring-offset-0"
+         {{ old('reserved', $editObjectInstance->reserved ?? 0) ? 'checked' : '' }}
+      />
+      <label for="reserved" class="form-label label">Reservada / Lacrada</label>
+    </div>
+  </div>
     <div class="col-md-3">
       <label for="department_id" class="form-label label">Seção</label>
       <div class="input-group">

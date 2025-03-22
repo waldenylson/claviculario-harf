@@ -50,6 +50,12 @@ class KeyMovementController extends Controller
 
   public function store(StoreKeyMovementPostRequest $request)
   {
+    $reservedKeys = $this->keyRepository->listReservedKeys()->pluck('department_id', 'id');
+
+
+
+    $selectedReservedKeys = [];
+
     DB::beginTransaction();
 
     try {
@@ -66,6 +72,12 @@ class KeyMovementController extends Controller
       $keyIds = $request->input('keys', []);
 
       foreach ($keyIds as $keyId) {
+        $key = $this->keyRepository->findSingleKey($keyId);
+
+        if (isset($reservedKeys[$keyId]) && $reservedKeys[$keyId] !== $harfStaff->department_id) {
+          return redirect()->back()->withInput()->with('error', 'Chave reservada para outro departamento!');
+        }
+
         $data = [
           'key_id' => $keyId,
           'harf_staff_id' => $harfStaff->id,

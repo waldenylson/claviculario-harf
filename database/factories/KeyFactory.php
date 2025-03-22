@@ -18,6 +18,7 @@ class KeyFactory extends Factory
       'internal_hallway' => $this->faker->boolean(),
       'eps' => $this->faker->boolean(),
       'epms' => $this->faker->boolean(),
+      'reserved' => $this->faker->boolean(),
       'comments' => $this->faker->sentence(),
     ];
   }

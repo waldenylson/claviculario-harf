@@ -11,26 +11,28 @@
           <table class="table table-hover table-striped align-middle" style="width: 70vw;margin-left: -100px;">
             <thead class="table-dark">
               <tr>
-                <th>#</th>
-                <th>Departamento</th>
+                {{-- <th>#</th> --}}
+                <th>Seção</th>
                 <th>Número</th>
                 <th>Corredor Interno</th>
                 <th>EPS</th>
                 <th>EPMS</th>
                 <th>Comentários</th>
+                <th>Reservado</th>
                 <th class="text-center">Ações</th>
               </tr>
             </thead>
             <tbody>
               @forelse ($keys as $key)
                 <tr>
-                  <td>{{ $keys->firstItem() + $loop->index }}</td>
+                  {{-- <td>{{ $keys->firstItem() + $loop->index }}</td> --}}
                   <td>{{ $key->department->name ?? 'Sem Departamento' }}</td>
                   <td>{{ $key->number }}</td>
                   <td>{{ $key->internal_hallway ? 'Sim' : 'Não' }}</td>
                   <td>{{ $key->eps ? 'Sim' : 'Não' }}</td>
                   <td>{{ $key->epms ? 'Sim' : 'Não' }}</td>
                   <td>{{ $key->comments }}</td>
+                  <td>{{ $key->reserved ? 'Sim' : 'Não' }}</td>
                   <td class="text-center">
                     <a href="{{ route('keys.edit', $key->id) }}" class="btn btn-sm btn-warning mx-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar">
                       <i class="fa fa-edit"></i>
@@ -44,7 +46,7 @@
                 </tr>
               @empty
                 <tr>
-                  <td colspan="8" class="text-center text-muted">Nenhuma chave encontrada.</td>
+                  <td colspan="9" class="text-center text-muted">Nenhuma chave encontrada.</td>
                 </tr>
               @endforelse
             </tbody>

@@ -53,12 +53,15 @@ class KeyTest extends TestCase
       'department_id' => $department->id,
       'number' => 123,
       'internal_hallway' => 1,
+      'reserved ' => 0,
       'eps' => 1,
       'epms' => 1,
       'comments' => 'Test comment',
     ];
 
     $response = $this->actingAs($user)->post(route('keys.store'), $data);
+
+    dd($response);
     // Verifica se houve redirecionamento (status 302)
     $response->assertStatus(302);
     $this->assertDatabaseHas('keys', $data);
@@ -82,11 +85,12 @@ class KeyTest extends TestCase
 
     $data = [
       'department_id' => $department->id,
-      'number' => 456,
-      'internal_hallway' => 0,
-      'eps' => 0,
-      'epms' => 0,
-      'comments' => 'Updated comment',
+      'number' => 123,
+      'internal_hallway' => 1,
+      'reserved ' => 0,
+      'eps' => 1,
+      'epms' => 1,
+      'comments' => 'Test comment',
     ];
 
     $response = $this->actingAs($user)->put(route('keys.update', $key->id), $data);

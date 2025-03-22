@@ -22,6 +22,11 @@ class KeyRepository implements KeyRepositoryContract
       ->orderBy('number', 'asc')->get();
   }
 
+  public function listReservedKeys()
+  {
+    return $this->modelClass::where('reserved', true)->get();
+  }
+
   public function findSingleKey(int $id)
   {
     return $this->modelClass::findOrFail($id);

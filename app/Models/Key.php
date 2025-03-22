@@ -15,10 +15,6 @@ class Key extends Model
 
   protected $guarded = [];
 
-  protected $fillable = [
-    'department_id',
-  ];
-
   // Adicione a lógica para determinar se a chave está retirada
   public function getIsCheckedOutAttribute()
   {

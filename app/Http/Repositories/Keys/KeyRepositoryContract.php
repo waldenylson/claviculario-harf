@@ -16,4 +16,5 @@ interface KeyRepositoryContract
   public function listKeys($paginateResult = false, $paginateNumber = 10);
   public function findSingleKey(int $id);
   public function getAllKeysForSelect();
+  public function listReservedKeys();
 }
