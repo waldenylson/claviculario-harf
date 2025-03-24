@@ -52,8 +52,6 @@ class KeyMovementController extends Controller
   {
     $reservedKeys = $this->keyRepository->listReservedKeys()->pluck('department_id', 'id');
 
-
-
     $selectedReservedKeys = [];
 
     DB::beginTransaction();
@@ -75,15 +73,15 @@ class KeyMovementController extends Controller
         $key = $this->keyRepository->findSingleKey($keyId);
 
         if (isset($reservedKeys[$keyId]) && $reservedKeys[$keyId] !== $harfStaff->department_id) {
-          return redirect()->back()->withInput()->with('error', 'Chave reservada para outro departamento!');
+          $selectedReservedKeys[] = $key->number;
+          // return redirect()->back()->withInput()->with('error', 'Chave reservada para outro departamento!');
+
         }
 
         $data = [
           'key_id' => $keyId,
           'harf_staff_id' => $harfStaff->id,
           'user_id' => $user->id,
-          'movement' => $request->input('movement'),
-          'movement_type' => $request->input('movement_type'),
           'out' => $request->input('out') ?? now(),
           'return' => $request->input('return'),
           'comments' => $request->input('comments'),
@@ -98,6 +96,10 @@ class KeyMovementController extends Controller
       }
 
       DB::commit();
+      if (!empty($selectedReservedKeys)) {
+        $selectedReservedKeysList = implode(', ', $selectedReservedKeys);
+        return redirect()->back()->with('message', 'Movimentação de Chave Inserida com Sucesso!' . ' Chave(s) reservada(s) Lacrada(s): ' . $selectedReservedKeysList);
+      }
       return redirect()->back()->with('message', 'Movimentação de Chave Inserida com Sucesso!');
     } catch (\Exception $e) {
       DB::rollBack();

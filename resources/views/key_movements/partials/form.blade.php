@@ -4,7 +4,6 @@
 
 <x-AppComponents::form-template :featureInstance="$editObjectInstance">
   <input type="hidden" name="electronic_signature" id="electronic_signature">
-  <input type="hidden" name="movement_type" id="movement_type" value="s">
   <div class="row">
     <fieldset class="custom-groupbox" style="margin-bottom: 10px; margin-left: 15px; width: 97.3%;">
       <legend style="width: 130px">&nbsp;&nbsp;Efetivo HARF</legend>

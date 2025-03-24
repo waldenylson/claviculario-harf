@@ -3,7 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
 {
@@ -17,9 +16,11 @@ return new class extends Migration
       $table->foreignId('key_id')->constrained('keys', 'id');
       $table->foreignId('harf_staff_id')->constrained('harf_staff', 'id');
       $table->foreignId('user_id')->constrained('users', 'id');
-      $table->string('movement_type')->nullable(false);
-      $table->string('movement')->nullable();
       $table->timestamp('out')->nullable(false)->useCurrent();
+      $table->unsignedBigInteger('harf_staff_return_id')->nullable()
+        ->constrained('harf_staff', 'id')->onDelete('set null');
+      $table->unsignedBigInteger('user_return_id')->nullable()
+        ->constrained('users', 'id')->onDelete('set null');
       $table->timestamp('return')->nullable()->useCurrent();
       $table->text('comments')->nullable();
       $table->timestamps();
