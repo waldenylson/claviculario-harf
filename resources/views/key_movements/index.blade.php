@@ -27,9 +27,9 @@
                   <td>{{ \Carbon\Carbon::parse($movement->out)->format('d/m/Y H:i:s') }}</td>
                   <td>{{ $movement->user->military_rank . ' ' . $movement->user->service_name }}</td>
                   <td class="text-center">
-                    <a href="{{ route('key_movements.edit', $movement->id) }}" class="btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar">
+                    {{-- <a href="{{ route('key_movements.edit', $movement->id) }}" class="btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar">
                       <i class="fa fa-edit"></i>
-                    </a>
+                    </a> --}}
                     <button class="btn btn-sm btn-danger mx-1 btn-delete" data-bs-toggle="tooltip" data-bs-placement="top" title="Excluir"
                       data-link="{{ route('key_movements.destroy', $movement->id) }}" data-id="{{ $movement->id }}"
                       data-name="{{ $movement->key->number }}">

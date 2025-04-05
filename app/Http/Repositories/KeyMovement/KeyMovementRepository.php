@@ -51,4 +51,19 @@ class KeyMovementRepository implements KeyMovementRepositoryContract
     $movement = $this->modelClass::findOrFail($id);
     return $movement->delete();
   }
+
+  /**
+   * Find an active key movement by key ID and staff ID.
+   *
+   * @param int $keyId
+   * @param int $staffId
+   * @return KeyMovement|null
+   */
+  public function findActiveMovementByKeyAndStaff(int $keyId, int $staffId): ?KeyMovement
+  {
+    return KeyMovement::where('key_id', $keyId)
+      ->where('harf_staff_id', $staffId)
+      ->whereNull('return')
+      ->first();
+  }
 }

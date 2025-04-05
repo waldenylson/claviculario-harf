@@ -24,8 +24,7 @@ class KeyMovementController extends Controller
     KeysKeyRepository $keyRepository,
     EfetivoRepository $efetivoRepository,
     UserRepository $userRepository
-  )
-  {
+  ) {
     $this->keyMovementRepository = $repository;
     $this->keyRepository = $keyRepository;
     $this->efetivoRepository = $efetivoRepository;
@@ -104,6 +103,46 @@ class KeyMovementController extends Controller
     } catch (\Exception $e) {
       DB::rollBack();
       return redirect()->back()->withInput()->with('error', 'Erro ao Tentar Inserir a Movimentação de Chave: ' . $e->getMessage());
+    }
+  }
+
+  public function returnKey(StoreKeyMovementPostRequest $request)
+  {
+    DB::beginTransaction();
+
+    try {
+      $user = Auth::user();
+      $electronicSignature = $request->input('electronic_signature');
+
+      // Verificar a assinatura eletrônica
+      $harfStaff = Efetivo::where('id', $request->input('efetivo_id'))->first();
+
+      if (!$harfStaff || !Hash::check($electronicSignature, $harfStaff->electronic_signature)) {
+        return redirect()->back()->withInput()->with('error', 'Assinatura eletrônica inválida!');
+      }
+
+      $keyIds = $request->input('keys', []);
+
+      foreach ($keyIds as $keyId) {
+        $keyMovement = $this->keyMovementRepository
+          ->findActiveMovementByKeyAndStaff($keyId, $harfStaff->id);
+
+        if (!$keyMovement) {
+          return redirect()->back()->withInput()->with('error', 'Movimentação ativa não encontrada para a chave selecionada!');
+        }
+
+        $keyMovement->update([
+          'harf_staff_return_id' => $harfStaff->id,
+          'user_return_id' => $user->id,
+          'return' => $request->input('return') ?? now(),
+        ]);
+      }
+
+      DB::commit();
+      return redirect()->back()->with('message', 'Devolução de Chave Registrada com Sucesso!');
+    } catch (\Exception $e) {
+      DB::rollBack();
+      return redirect()->back()->withInput()->with('error', 'Erro ao Tentar Registrar a Devolução de Chave: ' . $e->getMessage());
     }
   }
 

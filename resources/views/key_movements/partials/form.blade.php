@@ -41,12 +41,17 @@
                           @endphp
                           <div class="form-check" style="margin-bottom: 10px;">
                             <input type="checkbox" name="keys[]" value="{{ $key->id }}"
+                              id="key-{{ $key->id }}" {{-- Adiciona um ID único para o checkbox --}}
                               class="form-checkbox h-5 w-5 text-gray-700 dark:text-gray-300
                                  dark:bg-gray-800 dark:border-gray-600 focus:ring-0 focus:ring-offset-0"
-                              style="margin-left: -20px;cursor: pointer;" {{ $isCheckedOut ? 'disabled' : '' }}
+                              style="margin-left: -20px; cursor: {{ $isCheckedOut ? 'not-allowed' : 'pointer' }};"
+                              title="{{ $isCheckedOut ? 'Chave já retirada! Não é possível selecionar.' : '' }}"
+                              {{ $isCheckedOut ? 'disabled' : '' }}
                               {{ in_array($key->id, old('keys', [])) ? 'checked' : '' }} />
-                            <label for="keys" class="form-label label"
-                              style="{{ $isCheckedOut ? 'color: red;' : '' }}">
+                            <label for="key-{{ $key->id }}" class="form-label label"
+                              style="cursor: {{ $isCheckedOut ? 'not-allowed' : 'pointer' }};
+                                     {{ $isCheckedOut ? 'color: red;' : '' }}"
+                              title="{{ $isCheckedOut ? 'Chave já retirada! Não é possível selecionar.' : '' }}">
                               {{ $key->number }}
                             </label>
                           </div>
