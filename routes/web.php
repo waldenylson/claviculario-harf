@@ -83,7 +83,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/atualizar/{id}', [KeyMovementController::class, 'update'])->name('key_movements.update');
     Route::delete('/excluir/{id}', [KeyMovementController::class, 'destroy'])->name('key_movements.destroy');
     Route::resource('key_movements', KeyMovementController::class);
-    Route::patch('key_movements/{key_movement}/return', [KeyMovementController::class, 'return'])->name('key_movements.return');
+    Route::patch('key_movements/{key_movement}/return', [KeyMovementController::class, 'returnKey'])->name('key_movements.returnKey');
   });
 });
 

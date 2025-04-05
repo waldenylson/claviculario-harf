@@ -34,8 +34,9 @@ class KeyMovementController extends Controller
   public function index()
   {
     $movements = $this->keyMovementRepository->listMovements(true);
+    $staff = $this->efetivoRepository->listStaff(false);
 
-    return view('key_movements.index')->with(compact('movements'));
+    return view('key_movements.index')->with(compact('movements', 'staff'));
   }
 
   public function create()
@@ -108,6 +109,8 @@ class KeyMovementController extends Controller
 
   public function returnKey(StoreKeyMovementPostRequest $request)
   {
+    // dd($request->all());
+
     DB::beginTransaction();
 
     try {
