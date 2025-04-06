@@ -107,10 +107,19 @@ class KeyMovementController extends Controller
     }
   }
 
-  public function returnKey(StoreKeyMovementPostRequest $request)
+  public function returnIndividualKey(int $id)
   {
-    // dd($request->all());
+    $result = $this->keyMovementRepository->persistUpdate($request, $id);
 
+    if ($result) {
+      return redirect()->back()->with('message', 'Movimentação de Chave Atualizada com Sucesso!');
+    }
+
+    return redirect()->back()->with('error', 'Erro ao Tentar Atualizar a Movimentação de Chave!');
+  }
+
+  public function returnKeysBath()
+  {
     DB::beginTransaction();
 
     try {
@@ -124,7 +133,11 @@ class KeyMovementController extends Controller
         return redirect()->back()->withInput()->with('error', 'Assinatura eletrônica inválida!');
       }
 
+      // dd($request->input());
+
       $keyIds = $request->input('keys', []);
+
+      dd($keyIds, $id);
 
       foreach ($keyIds as $keyId) {
         $keyMovement = $this->keyMovementRepository
